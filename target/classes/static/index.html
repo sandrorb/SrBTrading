@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SrB Drills</title>
+	<link rel="icon" type="imagem/png" href="aperto-de-mao.png" />
+    <link href="styles.css" rel="stylesheet">
+
+
+
+
+
+
+<script>
+//window.onload = function () {
+	function simula(){
+
+	var dataPoints = [];
+	var y = 0;//1000;
+	var nOperacoes = $("#nOperacoes").val(); //500;
+	
+	var p = $("#p").val(); //0.45;
+	var risco = $("#risco").val(); //1.0;
+	var rr = $("#rr").val(); //2;
+
+	for ( var i = 0; i < nOperacoes; i++ ) {
+		if (Math.random() < p){
+			y = y + (rr * risco);
+		} else {
+			y = y - risco;
+		}
+		//y += Math.round( 10 + Math.random() * (-10 -10));	
+		dataPoints.push({ y: y });
+	}
+
+	var options = {
+		animationEnabled: false,
+		zoomEnabled: true,
+		title:{
+			text: "Curva de Capital"
+		}, 
+		subtitles:[{
+			text: "Swing Trading"
+		}],
+		data: [{
+			type: "line",
+			dataPoints: dataPoints
+		}]
+	};
+	var startTime = new Date();
+	$("#chartContainer").CanvasJSChart(options);
+	var endTime = new Date();
+	document.getElementById("timeToRender").innerHTML = "Duração da Renderização: " + (endTime - startTime) + "ms";
+	//$("#teste").html("Sandro");
+}
+</script>
+<style>
+	#timeToRender {
+		position:absolute; 
+		top: 10px; 
+		font-size: 20px; 
+		font-weight: bold; 
+		background-color: #d85757;
+		padding: 0px 4px;
+		color: #ffffff;
+	}
+	#chartContainer { height: 600px; width: 50%; margin: auto;}
+</style>
+    
+</head>
+
+<body>
+	<div>
+	<label>Número de Operações</label>
+	<input type="text" id="nOperacoes" value="500"><br>
+	<label>Probabilidade</label>
+	<input type="text" id="p" value="0.6"><br>
+	<label>Razão RR</label>
+	<input type="text" id="rr" value="2"><br>
+	<label>Risco</label>
+	<input type="text" id="risco" value="1.0"><br>
+	<button type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
+	</div>
+	
+	
+	
+	
+	<div id="chartContainer"></div>
+	<!-- <span id="timeToRender"></span>-->
+	
+	<div id="teste"></div>
+	
+	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+	<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+</body>
+</html>

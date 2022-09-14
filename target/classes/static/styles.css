@@ -1,0 +1,113 @@
+
+/********************* Configurações Gerais (Início) *********************/
+body {text-align: center; color: #F2F3F4; background-color: #283747;
+      font-family:"Calibri";}
+
+label {color: #EEEEEE;}
+input {border-radius: 6px; text-align: center;}
+a {color: #85C1E9; text-decoration:none}
+a:hover {color: yellow; /* background-color: yellow; */}
+/********************* Configurações Gerais (Fim) ************************/
+
+
+#cabecalho {margin: auto; margin-top: 2%; text-align: center; font-size: 18pt;
+			color: yellow; background-color: #1F618D;
+			width: 90%; border-radius: 10px;
+	        padding: 5px;}
+
+
+#corpo {margin: auto; margin-top: 1%; text-align: center;
+	        background-color: #1F618D; width: 90%; border-radius: 10px;
+	        padding: 20px;}
+
+#textoexplicativo {margin-bottom: 20px; text-align: justify; margin:
+                   auto; width: 80%; font-size: 12pt;}
+
+/*font-family: 'Courier New', monospace;*/
+#msgTemplate{color: yellow; margin-bottom: 20px; font-family: monospace, monospace;} 
+
+#wrapperCarregarArquivo {
+  overflow: auto;
+  border-radius: 10px;
+  border: 2px solid gray;
+  margin-left: auto; margin-right: auto;
+  min-width: 30%; max-width: 60%;
+  margin-top: 10px; margin-bottom: 10px;
+}
+
+/*Era do botão upload/Carregar e agora é do botão escolher arquivo e carregar ao mesmo tempo*/
+#upload-button {margin: 10px; margin-top: 10px; margin-bottom: 10px;}
+
+
+/* Definição da Tabela que Mostra os Resultados */
+#tabelaresultados {color: white; border: 1px solid gray; max-width: 80%; min-width: 40%;
+				   margin-left: auto; margin-right: auto; margin-top: 5px; margin-bottom: 10px; }
+#tabelaresultados th, td{border-bottom: 1px solid gray; border-top: 1px solid gray; border-collapse: collapse;}
+#tabelaresultados th {background-color: #000050; color: #A9A9A9;}
+#tabelaresultados td {background-color: #191970; color: #CCCCCC; padding: 1px 10px;}
+
+
+#wrapperMsg {
+  overflow: auto;
+  border-radius: 10px;
+  border: 2px solid gray;
+  margin-left: auto; margin-right: auto;
+  width: 500px;
+  margin-top: 10px; margin-bottom: 10px;
+}
+
+#wrapperTelefones {
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid gray;
+  background-color: #191970;
+  margin-left: auto; margin-right: auto;
+  margin-top: 10px; margin-bottom: 10px;
+  width: 300px;
+}
+
+#tabelatelefones {color: white; margin-left: auto; margin-right: auto;
+              margin-top: 10px; margin-bottom: 10px;
+              /*border: 1px solid gray;*/
+              }
+
+#tabelatelefones td {padding: 5px; border:none;}
+
+/*Para que a coluna dos labels da tabela de telefones de origiem e destino fique à direita na célula*/
+#tabelatelefones .tdlabel {text-align: right;}
+
+#from {background-color: #A9A9A9; width: 200px; text-align: center;}
+
+#to {width: 200px; text-align: center}
+
+#labelMsg {font-size: 16pt; color: #CCCCCC;}
+
+#msg {border-radius: 6px; width: 300px; padding: 5px;}
+
+/*#formMsg {margin: 0px;}*/
+#btnenviar {margin-bottom: 10px; margin-top: 10px;}
+
+#resposta { margin: auto; margin-top: 10px; max-width: 80%; min-width: 40%; text-align: center;}
+
+
+
+
+/*#btnFileUpload {width: 600px;}*/
+/*::file-selector-button{
+	  background: gray;
+  color: black;
+  margin-left: 0px;
+  width: 200px;
+  border-radius: 6px;
+}*/
+
+/*
+::-webkit-file-upload-button {
+  background: gray;
+  color: black;
+  margin-left: 0px;
+  width: 200px;
+  border-radius: 6px;
+}
+
+*/

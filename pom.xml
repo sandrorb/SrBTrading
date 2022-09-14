@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.10</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>  
+
+  <groupId>srb</groupId>
+  <artifactId>SrBdrills</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>MySrBdrills</name>
+  <description>Projeto para Treinamento e Prática</description> 
+  
+  
+  	<properties>
+		<!--Tive de tirar a versão para todar no Heroku. Dica que vi no google-->
+		<!--Aparentemente, ao retirar a versão, o maven escolhetu a versão JavaSE-1.8-->
+		<!--Mudei para 11 para ver se funciona, já que o projeto usa a palavra
+		    reservada var só suportada a partir da versão 10. Não adiantou. Mudei na
+		    configuração da JRE do projeto para JavaSE-11. Java 10 e depois 9 e de volta ao 1.8 -->
+		<!-- funcionou com a configuração em 1.8 e sem o var. Talvez sem o var funcione com uma versão maior -->
+		<!--java.version>14</java.version>-->    		
+	</properties> 
+  
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+		
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>  
+  
+</project>
