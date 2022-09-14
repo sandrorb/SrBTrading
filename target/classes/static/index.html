@@ -71,21 +71,32 @@
     
 </head>
 
-<body>
-	<div>
-	<label>Número de Operações</label>
-	<input type="text" id="nOperacoes" value="500"><br>
-	<label>Probabilidade</label>
-	<input type="text" id="p" value="0.6"><br>
-	<label>Razão RR</label>
-	<input type="text" id="rr" value="2"><br>
-	<label>Risco</label>
-	<input type="text" id="risco" value="1.0"><br>
-	<button type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
+<body onload=simula()>
+
+	<h2>Página de Teste para Simulações Monte Carlo de Sistema de Trading</h2>
+	
+	<div id="wrapperTelefones">
+		<table id="tabelatelefones">
+			<tr>
+		  		<td class="tdlabel"><label>Número de Operações:</label></td>
+		  		<td><input type="text" id="nOperacoes" name="nOperacoes" value="500"></td> 
+		  	</tr>
+		  	<tr>
+		  		<td class="tdlabel"><label>Probabilidade:</label></td>
+		  		<td><input type="text" id="p" name="p" value="0.45"></td> 
+		  	</tr>
+		  	<tr>
+		  		<td class="tdlabel"><label>Razão RR (payoff):</label></td>
+		  		<td><input type="text" id="rr" name="rr" value="2"></td> 
+		  	</tr>
+		  	<tr>
+		  		<td class="tdlabel"><label>Risco:</label></td>
+		  		<td><input type="text" id="risco" name="risco" value="1.0"></td> 
+		  	</tr>
+		</table>
+		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
 	</div>
-	
-	
-	
+		
 	
 	<div id="chartContainer"></div>
 	<!-- <span id="timeToRender"></span>-->
