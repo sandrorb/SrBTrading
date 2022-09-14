@@ -39,15 +39,33 @@
 		animationEnabled: false,
 		zoomEnabled: true,
 		title:{
-			text: "Curva de Capital"
+			text: "Curva de Capital",
+			fontFamily: "Calibri",
+			fontSize: 40,
 		}, 
 		subtitles:[{
-			text: "Swing Trading"
+			text: "As simulações são importantes para se conhecer o operacional, especialmente o drawdown máximo",
+			fontFamily: "Calibri",
+			fontSize: 20,
 		}],
+		
+	    axisX:{
+	    	title: "Trade",
+	    	  labelFontSize: 20,
+	          labelFontFamily: "Calibri"
+	        },
+	    axisY:{
+	          title: "Ganho %",
+	    	  labelFontSize: 20,
+	          labelFontFamily: "Calibri"
+	        },
+		        
 		data: [{
 			type: "line",
 			dataPoints: dataPoints
-		}]
+		}],
+		
+		backgroundColor: "#F5DEB3",
 	};
 	var startTime = new Date();
 	$("#chartContainer").CanvasJSChart(options);
@@ -82,7 +100,7 @@
 		  		<td><input type="text" id="nOperacoes" name="nOperacoes" value="500"></td> 
 		  	</tr>
 		  	<tr>
-		  		<td class="tdlabel"><label>Probabilidade:</label></td>
+		  		<td class="tdlabel"><label>Probabilidade de Acertar a Operação:</label></td>
 		  		<td><input type="text" id="p" name="p" value="0.45"></td> 
 		  	</tr>
 		  	<tr>
@@ -90,7 +108,7 @@
 		  		<td><input type="text" id="rr" name="rr" value="2"></td> 
 		  	</tr>
 		  	<tr>
-		  		<td class="tdlabel"><label>Risco:</label></td>
+		  		<td class="tdlabel"><label>Risco Percetual por Operação:</label></td>
 		  		<td><input type="text" id="risco" name="risco" value="1.0"></td> 
 		  	</tr>
 		</table>
