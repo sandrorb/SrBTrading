@@ -25,18 +25,17 @@ function simula() {
       data.addColumn('number', 'X');
       data.addColumn('number', 'Curva de Capital');
       
-  	var y = 0;//1000;
-	var nOperacoes = $("#nOperacoes").val(); //500;
-	
-	var p = $("#p").val(); //0.45;
-	var risco = $("#risco").val(); //1.0;
-	var rr = $("#rr").val(); //2;
+  	var y = 0;
+	var nOperacoes = parseInt( $("#nOperacoes").val() );	
+	var     p = parseFloat( $("#p").val() );
+	var risco = parseFloat( $("#risco").val() );
+	var    rr = parseFloat( $("#rr").val() );
 
 	var ddMax = 0.0;
 	var yMax = 0.0;
 	
 	for ( var i = 0; i < nOperacoes; i++ ) {
-		if (Math.random() < p){
+		if ( (100 * Math.random()) < p ){
 			y = y + (rr * risco);
 		} else {
 			y = y - risco;
@@ -118,12 +117,28 @@ function simula() {
           legend: {position: 'none'},
 
       };
-
+      
       //var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
       var chart = new google.visualization.AreaChart(document.getElementById('chart_simulacao'));
       chart.draw(data, options);
   //    $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax.toFixed(2) + "%");
+  
+  		calculaDados();
       
+    }
+    
+    
+    
+    function calculaDados(){
+    	var p = parseFloat( $("#p").val() );
+    	var risco = parseFloat( $("#risco").val() );
+    	var rr = parseFloat( $("#rr").val() ); 
+    	
+    	var breakEven = 100 * (1.0 / (1.0 + rr) );
+    	var edge = p - breakEven;
+    	
+    	
+    	$("#dadosCalculados").text("Breakeven = " + breakEven.toFixed(2) + "%  e Edge = " + edge.toFixed(2) + "%");
     }
 
 </script>
@@ -133,7 +148,7 @@ function simula() {
 <body onload=simula()>
 
 <div id="corpo">
-	<h2>Simulação Monte Carlo de Sistema de Trading</h2>
+	<h1>Simulação Monte Carlo de Sistema de Trading</h1>
 	
 	<div id="textoexplicativo">
 		No momento, o sistema sendo testado de swing trade em Forex tem os seguintes parâmetros:
@@ -153,7 +168,7 @@ function simula() {
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Probabilidade de Acertar a Operação:</label></td>
-		  		<td><input type="text" id="p" name="p" value="0.5333"></td> 
+		  		<td><input type="text" id="p" name="p" value="53.33"></td> 
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Razão RR (payoff):</label></td>
@@ -164,8 +179,10 @@ function simula() {
 		  		<td><input type="text" id="risco" name="risco" value="1.45"></td> 
 		  	</tr>
 		</table>
+		<div id="dadosCalculados"></div>
 		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
 	</div>
+  
   
 	<div id="wrapperChart">
 	  <div id="chart_simulacao"></div>
