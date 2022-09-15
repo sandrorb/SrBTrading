@@ -13,8 +13,11 @@ a:hover {color: yellow; /* background-color: yellow; */}
 	        background-color: #1F618D; width: 70%; border-radius: 10px;
 	        padding: 20px; padding-bottom: 40px; min-width: 900px;}
 
+#textointrodutorio {margin-bottom: 20px; text-align: justify; margin:
+                    auto; width: 80%; font-size: 12pt;}
 #textoexplicativo {margin-bottom: 20px; text-align: justify; margin:
-                   auto; width: 80%; font-size: 12pt;}
+                    auto; width: 80%; font-size: 10pt;}
+
 
 #wrapperDados {
   overflow: auto;
