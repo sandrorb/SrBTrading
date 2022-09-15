@@ -15,7 +15,8 @@
 
 <script type="text/javascript">
 
-google.charts.load('current', {packages: ['corechart', 'line']});
+//google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(simula);
 
 function simula() {
@@ -117,7 +118,8 @@ function simula() {
 
       };
 
-      var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
+      //var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_simulacao'));
       chart.draw(data, options);
       $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax.toFixed(2) + "%");
       
