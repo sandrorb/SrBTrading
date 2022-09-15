@@ -16,7 +16,7 @@
 <script type="text/javascript">
 
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBasic);
+google.charts.setOnLoadCallback(simula);
 
 function simula() {
 	
@@ -63,7 +63,7 @@ function simula() {
           fontName: "Calibri"
         },
         
-        title: 'Curva de Capital (Drawdown Máximo: ' + ddMax + '%)',
+        title: 'Curva de Capital (Drawdown Máximo: ' + ddMax.toFixed(2) + '%)', //ddMax.toFixed(2)
         //subtitle: 'Drawdown Máximo: ' + ddMax + '%',
         
         titleTextStyle: {
@@ -119,28 +119,29 @@ function simula() {
 
       var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
       chart.draw(data, options);
-      $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax + "%");
+      $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax.toFixed(2) + "%");
+      
     }
 
 </script>
-
-
-<style>
-.googleChartTitle {
-    font: bold 11px Arial;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    padding-top: 8px;
-}
-</style>
-
 
 </head>
 
 <body onload=simula()>
 
-	<h2>Página de Teste para Simulações Monte Carlo de Sistema de Trading</h2>
+<div id="corpo">
+	<h2>Simulações Monte Carlo de Sistema de Trading</h2>
+	
+	<div id="textoexplicativo">
+		No momento, o sistema sendo testado de swing trade em Forex tem os seguintes parâmetros:
+	    acertividade de 53,33%, payoff de 1,36% e risco médio de 1,45%. Essas estatísticas foram
+	    obtidas em 60 operações. Mais detalhes em <a href="http://bit.ly/srbfxlivre" target="_blank">http://bit.ly/srbfxlivre</a>.<p>
+	    Por meio dos parâmetros do sistema de trading obtidos por meio de backtesting ou forwarding testing,
+	    como os descritos acima, pode fazer várias simulações de possíveis históricos (curvas de capital)
+	    afim de se obter características adicionais sobre o sistema, como por exemplo, o drawdown máximo.
+	</div>
+	
+	
 	<div id="wrapperTelefones">
 		<table id="tabelatelefones">
 			<tr>
@@ -149,15 +150,15 @@ function simula() {
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Probabilidade de Acertar a Operação:</label></td>
-		  		<td><input type="text" id="p" name="p" value="0.45"></td> 
+		  		<td><input type="text" id="p" name="p" value="0.5333"></td> 
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Razão RR (payoff):</label></td>
-		  		<td><input type="text" id="rr" name="rr" value="2"></td> 
+		  		<td><input type="text" id="rr" name="rr" value="1.36"></td> 
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Risco Percetual por Operação:</label></td>
-		  		<td><input type="text" id="risco" name="risco" value="1.0"></td> 
+		  		<td><input type="text" id="risco" name="risco" value="1.45"></td> 
 		  	</tr>
 		</table>
 		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
@@ -165,7 +166,7 @@ function simula() {
   
   <div id="chart_simulacao"></div>
   <div id="ddMax"></div>
-
-
+  
+</div>
 </body>
 </html>
