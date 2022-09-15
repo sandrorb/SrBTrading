@@ -64,7 +64,7 @@ function simula() {
           fontName: "Calibri"
         },
         
-        title: 'Curva de Capital (Drawdown Máximo: ' + ddMax.toFixed(2) + '%)', //ddMax.toFixed(2)
+        title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '%', //ddMax.toFixed(2)
         //subtitle: 'Drawdown Máximo: ' + ddMax + '%',
         
         titleTextStyle: {
@@ -76,7 +76,7 @@ function simula() {
             align: 'center',
         },
 
-        chartArea: {top: 60, width: '80%', height: '65%'},
+        chartArea: {left: 100, top: 100, width: '80%', height: '65%'},
       
 
 /*       
@@ -166,7 +166,10 @@ function simula() {
 		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
 	</div>
   
-  <div id="chart_simulacao"></div>
+	<div id="wrapperChart">
+	  <div id="chart_simulacao"></div>
+  	</div>
+  
   <div id="ddMax"></div>
   
 </div>
