@@ -46,7 +46,7 @@ function simula() {
 		
 		if (Math.abs(y-yMax) > ddMax) {ddMax = Math.abs(y-yMax);}
 		
-		data.addRow([i,y]);
+		data.addRow([i,y/100.0]);
 	}
 
       var options = {
@@ -58,10 +58,11 @@ function simula() {
           gridlines: {count: 10},
         },
         vAxis: {
-          title: 'Ganho %',
+          title: 'Rentabilidade Acumulada',
           titleFontSize: 20,
           titleTextStyle: {color: 'gray'},
-          fontName: "Calibri"
+          fontName: "Calibri",
+          format: "0%"
         },
         
         title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '%', //ddMax.toFixed(2)
