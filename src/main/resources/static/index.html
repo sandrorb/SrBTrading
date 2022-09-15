@@ -122,7 +122,7 @@ function simula() {
       //var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
       var chart = new google.visualization.AreaChart(document.getElementById('chart_simulacao'));
       chart.draw(data, options);
-      $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax.toFixed(2) + "%");
+  //    $("#ddMax").text("O drawdown máximo ocorrido nesta simulação foi de " + ddMax.toFixed(2) + "%");
       
     }
 
@@ -145,8 +145,8 @@ function simula() {
 	</div>
 	
 	
-	<div id="wrapperTelefones">
-		<table id="tabelatelefones">
+	<div id="wrapperDados">
+		<table id="tabelaDados">
 			<tr>
 		  		<td class="tdlabel"><label>Número de Operações:</label></td>
 		  		<td><input type="text" id="nOperacoes" name="nOperacoes" value="500"></td> 
@@ -170,9 +170,7 @@ function simula() {
 	<div id="wrapperChart">
 	  <div id="chart_simulacao"></div>
   	</div>
-  
-  <div id="ddMax"></div>
-  
+    
 </div>
 </body>
 </html>
