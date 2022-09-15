@@ -1,7 +1,7 @@
 
 /********************* Configurações Gerais (Início) *********************/
 body {text-align: center; color: #F2F3F4; background-color: #283747;
-      font-family:"Calibri";}
+      font-family:"Calibri"; }
 
 label {color: #EEEEEE;}
 input {border-radius: 6px; text-align: center; width: 100px;}
@@ -16,9 +16,9 @@ a:hover {color: yellow; /* background-color: yellow; */}
 	        padding: 5px;}
 
 
-#corpo {margin: auto; margin-top: 2%; text-align: center;
+#corpo {margin: auto; margin-top: 2%; margin-bottom: 2%; text-align: center;
 	        background-color: #1F618D; width: 70%; border-radius: 10px;
-	        padding: 20px; padding-bottom: 40px;}
+	        padding: 20px; padding-bottom: 40px; min-width: 900px;}
 
 #textoexplicativo {margin-bottom: 20px; text-align: justify; margin:
                    auto; width: 80%; font-size: 12pt;}
