@@ -91,7 +91,7 @@ a:hover {color: yellow; /* background-color: yellow; */}
 
 #resposta { margin: auto; margin-top: 10px; max-width: 80%; min-width: 40%; text-align: center;}
 
-
+#chart_simulacao {width: 800px; height: 400px; margin: auto; border-radius: 10px;}
 
 
 /*#btnFileUpload {width: 600px;}*/
