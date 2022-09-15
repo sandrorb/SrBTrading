@@ -12,10 +12,10 @@
 	</parent>  
 
   <groupId>srb</groupId>
-  <artifactId>SrBdrills</artifactId>
+  <artifactId>SrBTrading</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>MySrBdrills</name>
-  <description>Projeto para Treinamento e Prática</description> 
+  <name>MySrBTrading</name>
+  <description>Projeto para o mercado financeiro</description> 
   
   
   	<properties>
