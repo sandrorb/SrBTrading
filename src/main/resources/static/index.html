@@ -44,21 +44,93 @@ function simula() {
         hAxis: {
           title: 'Trade',
           titleFontSize: 20,
-          titleTextStyle: {color: 'blue'}
+          titleTextStyle: {color: 'gray'},
+          fontName: "Calibri"
         },
         vAxis: {
           title: 'Ganho %',
           titleFontSize: 20,
-          titleTextStyle: {color: 'blue'}
-        }
+          titleTextStyle: {color: 'gray'},
+          fontName: "Calibri"
+        },
+        
+        title: 'Simulação Monte Carlo',
+        
+        titleTextStyle: {
+            color: 'gray',    // any HTML string color ('red', '#cc00cc')
+            fontName: 'Calibri', // i.e. 'Times New Roman'
+            fontSize: 24, // 12, 18 whatever you want (don't specify px)
+            bold: true,    // true or false
+            italic: true,   // true of false
+            align: 'center',
+        },
+
+        chartArea: {top: 60, width: '80%', height: '65%'},
+/*       
+         backgroundColor: {
+             gradient: {
+               // Start color for gradient.
+               color1: '#fbf6a7',
+               // Finish color for gradient.
+               color2: '#33b679',
+               // Where on the boundary to start and
+               // end the color1/color2 gradient,
+               // relative to the upper left corner
+               // of the boundary.
+               x1: '0%', y1: '0%',
+               x2: '100%', y2: '100%',
+               // If true, the boundary for x1,
+               // y1, x2, and y2 is the box. If
+               // false, it's the entire chart.
+               useObjectBoundingBoxUnits: true
+             },
+         },
+*/         
+/*
+         chartArea: {
+             'backgroundColor': {
+                 'fill': 'yellow',
+                 //'opacity': 100,
+                 'fillOpacity': 0.1
+              },
+          },
+*/
+          backgroundColor: {
+              fill: '#fffee0',
+              fillOpacity: 1.0 //
+          },
+          
+          /*legend: { position: "top", maxLines: 9, alignment:'start'  },*/
+          legend: {position: 'none'},
+
       };
 
       var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
 
       chart.draw(data, options);
+      
+      // After chart is drawn, add chart title
+      const node = document.createElement('div');
+      node.className = 'googleChartTitle';
+      node.innerHTML = 'Chart Title';
+
+      // Insert the node inside the chart divs
+      document.getElementById('chart_simulacao').childNodes[0].childNodes[0].append(node);      
+      
     }
 
 </script>
+
+
+<style>
+.googleChartTitle {
+    font: bold 11px Arial;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    padding-top: 8px;
+}
+</style>
 
 
 </head>
