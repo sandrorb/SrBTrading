@@ -1,3 +1,8 @@
+function startOnLoad(){
+	simular();
+	buscaDadosFinanceiros();	
+}
+
 //google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(simular);
@@ -97,6 +102,26 @@ function calculaDados(){
 	$("#dadosCalculados").text("Breakeven: " + breakEven.toFixed(2) + "%  e Edge: " + edge.toFixed(2) + "%");
 }
 	    
+
+
+
+function buscaDadosFinanceiros(){
+
+	$.get( "https://br.investing.com/indices/bovespa", function( data ) {
+		const ibovLastPrice = $(data).find('[data-test="instrument-price-last"]').html();			
+		const ibovChangePercent = $(data).find('[data-test="instrument-price-change-percent"]').html();
+		$( "#Ibov" ).html( "Ibovespa: " + ibovLastPrice + " " + ibovChangePercent );
+    });
+	
+	
+	$.get( "https://br.investing.com/indices/ibovespa-futures", function( data ) {
+		const ibovFutureLastPrice = $(data).find('[data-test="instrument-price-last"]').html();
+		const ibovFutureChangePercent = $(data).find('[data-test="instrument-price-change-percent"]').html();
+		$( "#IbovFuturo" ).html( "Ibovespa Futuro: " + ibovFutureLastPrice + " " + ibovFutureChangePercent );
+    });
+
+}	
+
 	    
 
 /* Início: Exemplos de configurações do gráfico */
