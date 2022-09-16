@@ -17,9 +17,9 @@
 
 //google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(simula);
+google.charts.setOnLoadCallback(simular);
 
-function simula() {
+function simular() {
 	
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
@@ -145,7 +145,7 @@ function simula() {
 
 </head>
 
-<body onload=simula()>
+<body onload=simular()>
 
 <div id="corpo">
 	<h1>Simulação Monte Carlo de Sistema de Trading</h1>
@@ -187,7 +187,7 @@ function simula() {
 		  	</tr>
 		</table>
 		<div id="dadosCalculados"></div>
-		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simula()">Simular</button>
+		<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="simular()">Simular</button>
 	</div>
   
   
