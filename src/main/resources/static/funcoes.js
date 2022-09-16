@@ -33,7 +33,9 @@ function simular() {
 	}
 	
 	var nMeses = nOperacoes / nOpPorMes;
-	var rentabilidadeMensal = 100 * (Math.pow(1 + (rentAcumulada / 100.0), (1/nMeses))  - 1);
+	//O cálculo abaixo é para o caso de a rentabilidade acumulada for calculada na base dos juros compostos
+	//var rentabilidadeMensal = 100 * (Math.pow(1 + (rentAcumulada / 100.0), (1/nMeses))  - 1);
+	var rentabilidadeMensal = rentAcumulada / nMeses;
 		
     var options = {
 	    	hAxis: {
