@@ -15,12 +15,23 @@
 	
 	
 	<script>
-		function teste(){
+		function pegaDados(){
+
+			$.get( "https://br.investing.com/indices/bovespa", function( data ) {
+				
+				const ibovLastPrice = $(data).find('[data-test="instrument-price-last"]').html();			
+				const ibovChangePercent = $(data).find('[data-test="instrument-price-change-percent"]').html();
+				$( "#Ibov" ).html( ibovLastPrice + " " + ibovChangePercent );
+		    });
 			
-			var x = $.get("https://br.investing.com/indices/ibovespa-futures"); //$("#teste" ).load( "ajax/teste.html #container" );
-			$("#teste").text(x.toString());
-		}
-	
+			
+			$.get( "https://br.investing.com/indices/ibovespa-futures", function( data ) {
+				const ibovFutureLastPrice = $(data).find('[data-test="instrument-price-last"]').html();
+				const ibovFutureChangePercent = $(data).find('[data-test="instrument-price-change-percent"]').html();
+				$( "#IbovFuturo" ).html( ibovFutureLastPrice + " " + ibovFutureChangePercent );
+		    });
+
+		}	
 	</script>
 	
 
@@ -30,9 +41,12 @@
 
 <div id="corpo">
 
-	<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="teste()" style="border-radius: 8px;">Testar</button>
+	<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="pegaDados()" style="border-radius: 8px;">Buscar Dados</button> <p>
 
-	<div id="teste"></div>
+	Ibovespa (BVSP): <span id="Ibov"></span> <p>
+	
+	Ibovespa Futuros: <span id="IbovFuturo"></span>
+	
 	
 	
 	<!-- <iframe src="https://br.investing.com/indices/ibovespa-futures-chart"></iframe> -->
