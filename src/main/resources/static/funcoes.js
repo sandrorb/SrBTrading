@@ -7,28 +7,33 @@ function simular() {
     data.addColumn('number', 'X');
     data.addColumn('number', 'Curva de Capital');
       
-  	var          y = 0;
-	var nOperacoes = parseInt( $("#nOperacoes").val() );	
-	var          p = parseFloat( $("#p").val() );
-	var      risco = parseFloat( $("#risco").val() );
-	var         rr = parseFloat( $("#rr").val() );
+  	var rentAcumulada = 0.0;
+	var    nOperacoes = parseInt( $("#nOperacoes").val() );	
+	var             p = parseFloat( $("#p").val() );
+	var         risco = parseFloat( $("#risco").val() );
+	var            rr = parseFloat( $("#rr").val() );
+	
+	var     nOpPorMes = parseFloat( $("#nOpPorMes").val() );
 
 	var      ddMax = 0.0;
-	var       yMax = 0.0;
+	var    rentMax = 0.0;
 	
 	for (var i = 0; i < nOperacoes; i++) {
 		if ( (100 * Math.random()) < p ){
-			y = y + (rr * risco);
+			rentAcumulada = rentAcumulada + (rr * risco);
 		} else {
-			y = y - risco;
+			rentAcumulada = rentAcumulada - risco;
 		}
 		
-		if (y>yMax){yMax = y;}
+		if (rentAcumulada > rentMax){ rentMax = rentAcumulada;}
 		
-		if (Math.abs(y-yMax) > ddMax) {ddMax = Math.abs(y-yMax);}
+		if (Math.abs(rentAcumulada-rentMax) > ddMax) {ddMax = Math.abs(rentAcumulada-rentMax);}
 		
-		data.addRow([i,y/100.0]);
+		data.addRow([i,rentAcumulada/100.0]);
 	}
+	
+	var nMeses = nOperacoes / nOpPorMes;
+	var rentabilidadeMensal = 100 * (Math.pow(1 + (rentAcumulada / 100.0), (1/nMeses))  - 1);
 		
     var options = {
 	    	hAxis: {
@@ -46,7 +51,8 @@ function simular() {
 		        format: "0%"
         	},
         
-        	title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '%', //ddMax.toFixed(2)
+        	//ddMax.toFixed(2)
+        	title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '% e Rentabilidade Mensal: ' + rentabilidadeMensal.toFixed(2) + '%', 
         	//subtitle: 'Drawdown Máximo: ' + ddMax + '%',
         
 			titleTextStyle: {

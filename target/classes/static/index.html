@@ -34,7 +34,12 @@
 		vencedoras dividido pela média de perda das operações perdedoras. O risco percentual por operação refere-se a quantidade
 		de capital que é posta em risco por cada operação. O breakeven é a acertividade mínima que
 		o sistema deve possuir para no mínimo "empatar" (não ter prejuízo). O edge é, em um sistema vencedor
-		é a diferença entre o percetual de acerto e o breakeven.
+		é a diferença entre o percetual de acerto e o breakeven.<p>
+		
+		A média de operações por mês é a inclusão do tempo nas contas. É ela que determina, por exemplo, a rentabilidade
+		mensal do método. Uma forma possível de se aumentar a rentabilidade mensal seria aplicar o método em
+		um tempo gráfico menor passando-se de diário para 4 horas ou mesmo o 60 minutos. Isso implicaria em
+		uma atividade (trabalho) bem maior por parte do investidor/especulador.
 	</div>
 	
 	<div id="wrapperDados">
@@ -43,6 +48,10 @@
 		  		<td class="tdlabel"><label>Número de Operações:</label></td>
 		  		<td><input type="text" id="nOperacoes" name="nOperacoes" value="500"></td> 
 		  	</tr>
+		  	<tr>
+		  		<td class="tdlabel"><label>Média de Operações por Mês:</label></td>
+		  		<td><input type="text" id="nOpPorMes" name="nOpPorMes" value="9.09"></td> 
+		  	</tr>		  	
 		  	<tr>
 		  		<td class="tdlabel"><label>Probabilidade de Acertar a Operação:</label></td>
 		  		<td><input type="text" id="p" name="p" value="53.33"></td> 
