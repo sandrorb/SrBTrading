@@ -7,11 +7,29 @@
     <title>SrB Trading</title>
 	<link rel="icon" type="imagem/png" href="aperto-de-mao.png" />
     <link href="styles.css" rel="stylesheet">
-    
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-	<script type="text/javascript" src="funcoes.js"></script>	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+	
+	<script type="text/javascript">
+		function teste(){
+			// https://www.scrapingbee.com/blog/html-parsing-jquery/
+			
+			/*$.get( "https://br.investing.com/indices/bovespa", function( data ) {
+				const x = $(data).find('[data-test="instrument-price-change-percent"]').html();
+				$( "#teste" ).html( x );
+		    });*/
+			
+			$.getScript( 'br.investing.com', function( data ) {
+				// <h2 class="outstanding-title">Acesso rápido</h2>
+				//const x = $(data).find('[id="main"]').html();
+				//$( "#teste" ).html( x );
+				alert(data);
+		    });			
+			
+			$("#funcionou").text("Ok!");
+		}
+	</script>
 
 </head>
 
@@ -19,11 +37,9 @@
 
 <div id="corpo">
 
-	<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="buscaDadosFinanceiros()" style="border-radius: 8px;">Buscar Dados</button> <p>
-
-	Ibovespa (BVSP): <span id="Ibov"></span> <p>
-	
-	Ibovespa Futuros: <span id="IbovFuturo"></span>
+	<button id="btnSimular" type="button" class="btn btn-primary buttonsalvarnovo" onclick="teste()" style="border-radius: 8px;">Buscar Dados</button> <p>
+	Funcionou?: <span id="funcionou"></span> <p>
+	Teste: <div id="teste"></div> <p>
 	
 	
 	
