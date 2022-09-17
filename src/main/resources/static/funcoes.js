@@ -1,13 +1,13 @@
 function startOnLoad(){
-	simular();
+	plotChart();
 	buscaDadosFinanceiros();	
 }
 
 //google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(simular);
-		
-function simular() {
+
+function simularOperacoes(){
 	var data = new google.visualization.DataTable();
     data.addColumn('number', 'X');
     data.addColumn('number', 'Curva de Capital');
@@ -17,7 +17,6 @@ function simular() {
 	var             p = parseFloat( $("#p").val() );
 	var         risco = parseFloat( $("#risco").val() );
 	var            rr = parseFloat( $("#rr").val() );
-	
 	var     nOpPorMes = parseFloat( $("#nOpPorMes").val() );
 
 	var      ddMax = 0.0;
@@ -35,12 +34,19 @@ function simular() {
 		if (Math.abs(rentAcumulada-rentMax) > ddMax) {ddMax = Math.abs(rentAcumulada-rentMax);}
 		
 		data.addRow([i,rentAcumulada/100.0]);
-	}
+	}	
+	return [nOperacoes, nOpPorMes, rentAcumulada, ddMax, data];
+}
+		
+function plotChart() {
 	
-	var nMeses = nOperacoes / nOpPorMes;
+	resultadosSimulacao = simularOperacoes();
+	
+	var nMeses = resultadosSimulacao[0] / resultadosSimulacao[1];
 	//O cálculo abaixo é para o caso de a rentabilidade acumulada for calculada na base dos juros compostos
 	//var rentabilidadeMensal = 100 * (Math.pow(1 + (rentAcumulada / 100.0), (1/nMeses))  - 1);
-	var rentabilidadeMensal = rentAcumulada / nMeses;
+	var rentabilidadeMensal = resultadosSimulacao[2] / nMeses;
+	var ddMax = resultadosSimulacao[3];
 		
     var options = {
 	    	hAxis: {
@@ -57,7 +63,7 @@ function simular() {
 		        fontName: "Calibri",
 		        format: "0%"
         	},
-        
+        	
         	//ddMax.toFixed(2)
         	title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '% e Rentabilidade Mensal: ' + rentabilidadeMensal.toFixed(2) + '%', 
         	//subtitle: 'Drawdown Máximo: ' + ddMax + '%',
@@ -86,7 +92,7 @@ function simular() {
 		      
 	//var chart = new google.visualization.LineChart(document.getElementById('chart_simulacao'));
 	var chart = new google.visualization.AreaChart(document.getElementById('chart_simulacao'));
-	chart.draw(data, options);
+	chart.draw(resultadosSimulacao[4], options);
 
 	calculaDados();
 
