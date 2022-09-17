@@ -65,7 +65,9 @@ function plotChart() {
         	},
         	
         	//ddMax.toFixed(2)
-        	title: 'Curva de Capital \nDrawdown Máximo: ' + ddMax.toFixed(2) + '% e Rentabilidade Mensal: ' + rentabilidadeMensal.toFixed(2) + '%', 
+        	title: 'Curva de Capital da Simulação\nDrawdown Máximo: ' + 
+        	        ddMax.toFixed(2) + '%, Rentabilidade Mensal: ' +
+        	        rentabilidadeMensal.toFixed(2) + '% e Total: ' + resultadosSimulacao[2].toFixed(2) +'%', 
         	//subtitle: 'Drawdown Máximo: ' + ddMax + '%',
         
 			titleTextStyle: {
