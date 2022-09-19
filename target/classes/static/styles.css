@@ -54,7 +54,8 @@ a:hover {color: yellow; /* background-color: yellow; */}
 			   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-#assinatura {margin: auto; margin-top: 2%;}
+#assinatura {color: #F39C12; margin-top: 30px}
+#assinaturaBfS {color: whiite; font-size: 12px;}
 
 #Ibov  {margin:auto; margin-left: 10px; margin-right: 10px; color: orange;}
 #IbovFuturo {margin:auto; margin-left: 10px; margin-right: 10px; color: orange;}
