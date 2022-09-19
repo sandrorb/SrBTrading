@@ -4,7 +4,7 @@ body {text-align: center; color: #F2F3F4; background-color: #283747;
       font-family:"Calibri"; }
 
 label {color: #EEEEEE;}
-input {border-radius: 6px; text-align: center; width: 100px;}
+input {border-radius: 6px; text-align: center; width: 100px; background-color: gray; color: white;}
 a {color: #85C1E9; text-decoration:none}
 a:hover {color: yellow; /* background-color: yellow; */}
 /********************* Configurações Gerais (Fim) ************************/
