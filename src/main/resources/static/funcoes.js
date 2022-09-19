@@ -103,11 +103,13 @@ function plotChart() {
 
 function calculaDados(){
 	var p = parseFloat( $("#p").val() );
-	//var risco = parseFloat( $("#risco").val() );
+	var risco = parseFloat( $("#risco").val() );
 	var rr = parseFloat( $("#rr").val() ); 
 	var breakEven = 100 * (1.0 / (1.0 + rr) );
-	var edge = p - breakEven;	    	
-	$("#dadosCalculados").text("Breakeven: " + breakEven.toFixed(2) + "%  e Edge: " + edge.toFixed(2) + "%");
+	var edge = p - breakEven;
+	var nOpPorMes = parseFloat( $("#nOpPorMes").val() );
+	var rentMensal = nOpPorMes * ((p / 100.0) * rr * risco - (1-(p / 100.0)) * risco);
+	$("#dadosCalculados").html("Breakeven: " + breakEven.toFixed(2) + "%,  Edge: " + edge.toFixed(2) + "% <br> Rentabilidade: " + rentMensal.toFixed(2) + "% a.m.");
 }
 	    
 
