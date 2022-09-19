@@ -109,7 +109,7 @@ function calculaDados(){
 	var edge = p - breakEven;
 	var nOpPorMes = parseFloat( $("#nOpPorMes").val() );
 	var rentMensal = nOpPorMes * ((p / 100.0) * rr * risco - (1-(p / 100.0)) * risco);
-	$("#dadosCalculados").html("Breakeven: " + breakEven.toFixed(2) + "%,  Edge: " + edge.toFixed(2) + "% <br> Rentabilidade: " + rentMensal.toFixed(2) + "% a.m.");
+	$("#dadosCalculados").html("Breakeven: " + breakEven.toFixed(2) + "%,  Edge: " + edge.toFixed(2) + "%, <br> Rentabilidade: " + rentMensal.toFixed(2) + "% a.m.");
 }
 	    
 
