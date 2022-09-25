@@ -10,6 +10,10 @@
     
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <!-- Para escrever LaTeX em html -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 	<script type="text/javascript" src="funcoes.js"></script>
 
@@ -75,6 +79,27 @@
 	<div id="wrapperChart">
 	  <div id="chart_simulacao"></div>
   	</div>
+  	
+  	
+  	<div id="linksInteressantes">
+  		Material sobre a Equação do Trader e o Critério de Kelly:<br>
+  		<a href="https://drive.google.com/file/d/1LbwSEij1JdlHa68G8NfnYyytcEgfbjp_/view?usp=sharing" target="_blank">
+  			Equação do Trader 
+  		</a>
+  		<br>
+  		<a href="https://drive.google.com/file/d/1I-dFXNzsJJQvnUnPy3ukmStmlWc0XPHe/view?usp=sharing" target="_blank">
+  			Critério de Kelly
+  		</a>
+  	</div>
+  	
+  	<div id="formulas">
+  		Juros Compostos:<br>
+  		\( C = C_o (1+i)^n + A \left[ \frac{(1+i)^n - 1}{i} \right]  \)
+  		<br><br>
+  		Expectativa Matemática:<br>
+  		\( EM = p_g (\textrm{payoff} + 1) - 1 \)
+  	</div>	
+  	
 
 	<div id="assinatura">
 		Por Sandro Roger Boschetti
