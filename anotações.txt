@@ -1,3 +1,7 @@
 O arquivo json em resources é do Google Sheets numa tentativa de se ler
 planilhas programaticamente.
 Mais em: https://www.baeldung.com/google-sheets-java-client
+
+Neste link parece que o exemplo está mais simples e talvez não falte
+código como no outro:
+https://medium.com/geekculture/how-to-read-data-from-google-sheets-ee335f787de6
