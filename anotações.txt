@@ -1,0 +1,3 @@
+O arquivo json em resources é do Google Sheets numa tentativa de se ler
+planilhas programaticamente.
+Mais em: https://www.baeldung.com/google-sheets-java-client
