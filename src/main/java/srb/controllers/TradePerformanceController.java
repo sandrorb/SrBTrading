@@ -1,5 +1,13 @@
 package srb.controllers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -25,7 +33,50 @@ public class TradePerformanceController {
 	public TradePerformanceController(TradePerformanceRepository tradePerformanceRepository) {
 		this.tradePerformanceRepository = tradePerformanceRepository;
 	}
+
 	
+	
+	@RequestMapping(value = "/teste/{texto}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String teste(@PathVariable String texto) {
+		File f = new File("teste.txt");
+		String str = null;
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			bw.write(texto);
+			bw.flush();
+			bw.close();
+			str = "Texto gravado com sucesso!";
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return str;
+	}	
+
+	
+	@RequestMapping(value = "/teste", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public String teste() {
+		File f = new File("teste.txt");
+		String str = "";
+		String st = "";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			while ((st = br.readLine()) != null) {
+				str = str + st;
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return str;
+	}
+	
+
 	
 	@PostMapping(value = "/todos")
 	@ResponseBody
