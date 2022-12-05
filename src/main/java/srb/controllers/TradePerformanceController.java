@@ -34,8 +34,7 @@ public class TradePerformanceController {
 		this.tradePerformanceRepository = tradePerformanceRepository;
 	}
 
-	
-	
+
 	@RequestMapping(value = "/teste/{texto}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String teste(@PathVariable String texto) {
@@ -81,7 +80,6 @@ public class TradePerformanceController {
 	@PostMapping(value = "/todos")
 	@ResponseBody
 	public ResponseEntity<List<TradePerformanceModel>> buscarTodos(){
-		System.out.println("XXXXXXXXXXXXXXXXX");
 		List<TradePerformanceModel> tpm = tradePerformanceRepository.findAll();
 		return new ResponseEntity<List<TradePerformanceModel>>(tpm, HttpStatus.CREATED);
 	}
