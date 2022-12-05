@@ -37,12 +37,12 @@ public class TradePerformanceController {
 
 	
 /* Método criado apenas para testar no browser, já que não consegui mostrar no browser pelo POST */	
-//	@GetMapping(value = "/todos")
-//	@ResponseBody
-//	public ResponseEntity<List<TradePerformanceModel>> buscarTodosGet(){
-//		List<TradePerformanceModel> tpm = tradePerformanceRepository.findAll();
-//		return new ResponseEntity<List<TradePerformanceModel>>(tpm, HttpStatus.CREATED);
-//	}		
+	@GetMapping(value = "/todos")
+	@ResponseBody
+	public ResponseEntity<List<TradePerformanceModel>> buscarTodosGet(){
+		List<TradePerformanceModel> tpm = tradePerformanceRepository.findAll();
+		return new ResponseEntity<List<TradePerformanceModel>>(tpm, HttpStatus.CREATED);
+	}		
 	
 	
 /* Método criado apenas para teste e lembrete */	
