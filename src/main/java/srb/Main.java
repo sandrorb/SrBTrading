@@ -7,8 +7,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Antes de inicial o Spring.");
-		
 		SpringApplication.run(Main.class, args);
 	}
 
