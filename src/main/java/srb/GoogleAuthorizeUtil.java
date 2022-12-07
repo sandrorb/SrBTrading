@@ -28,9 +28,9 @@ public class GoogleAuthorizeUtil {
 //	    String credentialPath = credentialLocation + "/credenciais_2022-12-07-0749.json";
 	    
 		//Ao contrário do caso acima, aqui o caminho para o arquivo com as credenciais não foi ocultado.
-	    String credentialLocation = ".\\";  //System.getProperty("user.dir");
+	    String credentialLocation = ".";  //System.getProperty("user.dir");
 	    //O arquivo com as credenciais do GoogleSheets estão fora fo projeto e não é versionado pelo git, por segurança.
-	    String credentialPath = credentialLocation + "google-credentials.json";
+	    String credentialPath = credentialLocation + "/google-credentials.json";
 	    
 	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new FileReader(credentialPath));
 
