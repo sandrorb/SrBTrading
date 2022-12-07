@@ -29,7 +29,7 @@ public class GoogleAuthorizeUtil {
 	    
 		//Ao contrário do caso acima, aqui o caminho para o arquivo com as credenciais não foi ocultado.
 		//O "." funcionou no Heroku e com as instruções em https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
-	    String credentialLocation = ".";  //System.getProperty("user.dir");
+	    String credentialLocation = ".";  //System.getProperty("user.dir"); 
 	    //O arquivo com as credenciais do GoogleSheets estão fora fo projeto e não é versionado pelo git, por segurança.
 	    //Criei novo arquivo de credencial via google, mas desta vez para serviço. O conteúdo foi posto em variável de ambiente para ser usado conforme https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
 	    String credentialPath = credentialLocation + "/google-credentials.json";
