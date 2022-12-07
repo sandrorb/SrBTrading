@@ -38,10 +38,10 @@ public class GoogleAuthorizeUtil {
 	    
 	    
 	    //A ser usado somente onde houver um proxy
-	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
-	    String myProxyPort = System.getenv("MY_PROXY_PORT");
-	    System.setProperty("https.proxyHost", myProxyAddress);
-	    System.setProperty("https.proxyPort", myProxyPort);
+//	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
+//	    String myProxyPort = System.getenv("MY_PROXY_PORT");
+//	    System.setProperty("https.proxyHost", myProxyAddress);
+//	    System.setProperty("https.proxyPort", myProxyPort);
 
 	    GoogleAuthorizationCodeFlow googleAuthorizationCodeFlow = new GoogleAuthorizationCodeFlow
 	            .Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), clientSecrets, scopes)
