@@ -8,3 +8,4 @@ https://medium.com/geekculture/how-to-read-data-from-google-sheets-ee335f787de6
 
 
 
+https://stackoverflow.com/questions/53901194/use-google-sheets-java-api-with-api-key-not-oauth
