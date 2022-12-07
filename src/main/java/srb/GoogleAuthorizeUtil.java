@@ -45,11 +45,15 @@ public class GoogleAuthorizeUtil {
 //	    System.setProperty("https.proxyHost", myProxyAddress);
 //	    System.setProperty("https.proxyPort", myProxyPort);
 
+	    
+	    
 	    GoogleAuthorizationCodeFlow googleAuthorizationCodeFlow = new GoogleAuthorizationCodeFlow
 	            .Builder(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), clientSecrets, scopes)
 	            .setDataStoreFactory(new FileDataStoreFactory(new File(credentialLocation)))
 	            .setAccessType("offline")
 	            .build();
+	    
+	    
 	    
 	    AuthorizationCodeInstalledApp acia = new AuthorizationCodeInstalledApp(googleAuthorizationCodeFlow, new LocalServerReceiver());
 	    Credential credencial = acia.authorize("user");
