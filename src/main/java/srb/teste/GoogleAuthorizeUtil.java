@@ -1,16 +1,8 @@
-package srb;
+package srb.teste;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,12 +12,8 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitializer;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-//import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
@@ -39,8 +27,8 @@ public class GoogleAuthorizeUtil {
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();//GsonFactory.getDefaultInstance();
 //	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 	
-	private static final String TOKENS_DIRECTORY_PATH = ".."; //System.getProperty("user.dir");
-	private static final String CREDENTIALS_FILE_PATH = "credencials.json";
+	private static final String TOKENS_DIRECTORY_PATH = "tokens"; //System.getProperty("user.dir");
+	private static final String CREDENTIALS_FILE_PATH = "google-credentials.json";
 	
 	private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);//Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 	
@@ -48,25 +36,36 @@ public class GoogleAuthorizeUtil {
 	private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
 		
 //	    String credentialLocation = "..";
-//	    String credentialPath = credentialLocation + "/google-credentials-desktop.json";
-	    
-		// Load client secrets.
+//	    String credentialPath = credentialLocation + "/google-credentials-desktop.json"; 
+	     
+		// Load client secrets. Este é o original GoogleClientSecrets.load(JSON_FACTORY, in);
 	    InputStream in = GoogleAuthorizeUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-//	    InputStream in = new FileInputStream( new File("C:\\Users\\Sandro\\eclipse-workspace\\credentials.json"));
+//		File f = new File(CREDENTIALS_FILE_PATH);
+//	    InputStream in = new FileInputStream(f);
 	    if (in == null) {
 	      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
 	    }
+//	    
+//	    InputStreamReader isr = new InputStreamReader(in);
+//	    FileReader fr = new FileReader(f);
+//	    Scanner s = new Scanner(isr);
+//	    while (s.hasNext()) {
+//	    	System.out.println(s.nextLine());
+//	    }
+//	    
 	    
+	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new FileReader(CREDENTIALS_FILE_PATH));
+//	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new FileReader(in));
+//	    GoogleCredentials clientSecrets = GoogleCredentials.fromStream(in).createScoped(SCOPES);
 	    
-	    //GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new FileReader(credentialPath));
-	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+ 
 	    
 	    //A ser usado somente onde houver um proxy
 //	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
 //	    String myProxyPort = System.getenv("MY_PROXY_PORT");
 //	    System.setProperty("https.proxyHost", myProxyAddress);
 //	    System.setProperty("https.proxyPort", myProxyPort);
-	   
+	    
 	    
 	    // Build flow and trigger user authorization request.
 	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
@@ -82,8 +81,8 @@ public class GoogleAuthorizeUtil {
 //	    		.build();
 
 
-	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
-//	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().build();
+//	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
+	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().build();
 	    //return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	    AuthorizationCodeInstalledApp acia =  new AuthorizationCodeInstalledApp(flow, receiver);
 	    
@@ -95,23 +94,21 @@ public class GoogleAuthorizeUtil {
 	    
 	    //AuthorizationCodeInstalledApp acia = new AuthorizationCodeInstalledApp(googleAuthorizationCodeFlow, new LocalServerReceiver());
 	    Credential credencial = acia.authorize("user");
-
+	    
 	    return credencial;
 	}
 		
-
 	
 	public static String getDataSrB(String spreadSheetId, String cellLocation) throws Exception {
-		
-		
-	
+
 //	    final String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
 //	    final String range = "Class Data!A2:E";
 	    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 	    Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY,  getCredentials(HTTP_TRANSPORT))
 	            .setApplicationName(APPLICATION_NAME)
-	            .build();		
-	    	
+	            .build();
+	    
+	    
 //	    GoogleClientRequestInitializer KEY_INITIALIZER = CommonGoogleClientRequestInitializer.newBuilder().setKey("AIzaSyDl3D0ttyiMZyLsHdMJXPQcbPnTzfBkk04").build();	    
 //		Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 //                .setApplicationName(APPLICATION_NAME)
