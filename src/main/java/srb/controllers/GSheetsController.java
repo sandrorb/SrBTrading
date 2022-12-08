@@ -1,8 +1,12 @@
 package srb.controllers;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -46,38 +50,24 @@ public class GSheetsController {
 	@RequestMapping(value = "/ok", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String ok() {
-		
+		StringBuffer sb = new StringBuffer();
 		URL url;
 		try {
-			url = new URL("https://sheets.googleapis.com/v4/spreadsheets/{1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE}/values/{B7}?key=");
+			url = new URL("https://sheets.googleapis.com/v4/spreadsheets/1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE/values/B7?key=AIzaSyB75wZL6HkU_iLNP3a5r0HsIWGW6xL8ZuM");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
-			
-			Map<String, String> parameters = new HashMap<>();
-			parameters.put("param1", "val");
-
-			con.setDoOutput(true); 
-			
-//			DataOutputStream out = new DataOutputStream(con.getOutputStream());
-			InputStream is = con.getInputStream();
-			 
-			
-						
-			System.out.println(is);
-			
-//			out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
-//			out.flush();
-//			out.close();
-			
-			
-			System.out.println("ok");
+//			con.setDoOutput(true); 
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream())); 
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		
-		return "XXXXXXXXXXXX";
+		return sb.toString();
 	}
 	
 	

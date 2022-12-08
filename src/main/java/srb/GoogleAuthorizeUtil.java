@@ -1,8 +1,16 @@
 package srb;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,55 +36,54 @@ public class GoogleAuthorizeUtil {
 	
 	
 	private static final String APPLICATION_NAME = "SrBTrading";
-//	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();//GsonFactory.getDefaultInstance();
-	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();//GsonFactory.getDefaultInstance();
+//	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 	
-//	private static final String TOKENS_DIRECTORY_PATH = ".";
-//	private static final String CREDENTIALS_FILE_PATH = "/google-credentials-desktop.json";
-//	private static final String CREDENTIALS_FILE_PATH = "/google-credentials-service.json";
-//	private static final String CREDENTIALS_FILE_PATH = "/srbtrading-21eacb41c260.json";
+	private static final String TOKENS_DIRECTORY_PATH = ".."; //System.getProperty("user.dir");
+	private static final String CREDENTIALS_FILE_PATH = "credencials.json";
 	
 	private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);//Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-
+	
 	
 	private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
-
+		
 //	    String credentialLocation = "..";
 //	    String credentialPath = credentialLocation + "/google-credentials-desktop.json";
 	    
 		// Load client secrets.
-//	    InputStream in = SheetsQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-//	    if (in == null) {
-//	      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
-//	    }
-    
+	    InputStream in = GoogleAuthorizeUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+//	    InputStream in = new FileInputStream( new File("C:\\Users\\Sandro\\eclipse-workspace\\credentials.json"));
+	    if (in == null) {
+	      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+	    }
+	    
 	    
 	    //GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new FileReader(credentialPath));
-//	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 	    
 	    //A ser usado somente onde houver um proxy
-	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
-	    String myProxyPort = System.getenv("MY_PROXY_PORT");
-	    System.setProperty("https.proxyHost", myProxyAddress);
-	    System.setProperty("https.proxyPort", myProxyPort);
+//	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
+//	    String myProxyPort = System.getenv("MY_PROXY_PORT");
+//	    System.setProperty("https.proxyHost", myProxyAddress);
+//	    System.setProperty("https.proxyPort", myProxyPort);
+	   
 	    
 	    // Build flow and trigger user authorization request.
-//	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-//	        .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-//	        .setAccessType("offline")
-//	        .build();
-	    
+	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+	        .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
+	        .setAccessType("offline")
+	        .build();
 
 	    //https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#web_server_applications
-	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY,
-	    		"XXXXXXXXXXXXXXXXXXXXXXXX", "YYYYYYYYYYYYYYYYYYYYY", SCOPES)
-	    		//.setDataStoreFactory(DATA_STORE_FACTORY)
-	    		.setAccessType("offline")
-	    		.build();
+//	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY,
+//	    		"XXXXXXXX", "YYYYYYY", SCOPES)
+//	    		.setDataStoreFactory(new FileDataStoreFactory(new java.io.File("tokens")))
+//	    		.setAccessType("offline")
+//	    		.build();
 
 
-	    //LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
-	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().build();
+	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8080).build();
+//	    LocalServerReceiver receiver = new LocalServerReceiver.Builder().build();
 	    //return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	    AuthorizationCodeInstalledApp acia =  new AuthorizationCodeInstalledApp(flow, receiver);
 	    
