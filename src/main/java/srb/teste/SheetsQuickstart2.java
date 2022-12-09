@@ -25,16 +25,22 @@ public class SheetsQuickstart2 {
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
   //private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json";
-  private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  
+  static {
+	  System.out.println("SrB: diretório: " + System.getProperty("user.dir"));
+	  try {
+		System.out.println("SrB: nome do cumputador: " + InetAddress.getLocalHost().getHostName());
+	  } catch (UnknownHostException e) {
+		e.printStackTrace();
+	  }
+	  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
+  }
 
     
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
+	    
 //	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
-	  
-	  if ( InetAddress.getLocalHost().getHostName().equals("6a1c4b9f-fe40-4e2c-b9b2-218e16c26d15")) {//09b644ec-f967-4f19-b2e7-573ab8f85757
-		  System.out.println("SrB: neste computador, a credencial google é por meio de buildpacke");
-	  }
-	  
 	  GoogleCredential credential = GoogleCredential.fromStream(
 			                        new FileInputStream(CREDENTIALS_FILE_PATH))
 			                        .createScoped(SCOPES); 
