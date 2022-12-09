@@ -1,4 +1,4 @@
-package srb.teste;
+package srb.gsheets;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import srb.model.TradePerformanceModel;
 
 @RestController
-public class GSheetController {
+public class GSheetsController {
 
 //	@RequestMapping(value = "/g", method = RequestMethod.GET)
 //	@ResponseStatus(HttpStatus.OK)
@@ -36,7 +36,7 @@ public class GSheetController {
 	public  ResponseEntity<TradePerformanceModel> gpost2() throws IOException, GeneralSecurityException {
 //		TradePerformanceModel tpm = new TradePerformanceModel();
 //		tpm.setId(1L); tpm.setNumOfTrade(500); tpm.setNumOpPorMes(8); tpm.setPayoff(1.1); tpm.setProbabilidadeAcertar(50.0); tpm.setRisco(1.5);
-		TradePerformanceModel tpm = SheetsQuickstart2.getTradePerformanceModel();
+		TradePerformanceModel tpm = GSheetsAccess.getTradePerformanceModel();
 		return new ResponseEntity<TradePerformanceModel>(tpm, HttpStatus.CREATED);
 	}	
 	

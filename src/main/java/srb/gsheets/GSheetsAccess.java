@@ -1,4 +1,4 @@
-package srb.teste;
+package srb.gsheets;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,12 +19,12 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 
 import srb.model.TradePerformanceModel;
 
-public class SheetsQuickstart2 {
+public class GSheetsAccess {
 	
   private static final String APPLICATION_NAME = "SrBTrading App";
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  private static final String CREDENTIALS_FILE_PATH = "/google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
   
   static {
 	  System.out.println("SrB: diretório  app: " + System.getProperty("user.dir"));
