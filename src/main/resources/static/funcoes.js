@@ -138,7 +138,7 @@ function loadTradePerformance(){
 	$('#msgCarrgarDadosPerformance').text("Carregando...");
 	$.ajax({
 		method: "POST",
-		url: "gpost2",
+		url: "tpm",
 		contentType: "application/json; charset=utf-8",
 		success: function(response){
 			$("#nOpPorMes").val(parseFloat(response.numOpPorMes).toFixed(2));
