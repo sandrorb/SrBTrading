@@ -2,6 +2,8 @@ package srb.teste;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
@@ -28,56 +30,18 @@ public class SheetsQuickstart2 {
     
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
 //	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
-	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream(CREDENTIALS_FILE_PATH)).createScoped(SCOPES);
+	  GoogleCredential credential = GoogleCredential.fromStream(
+			                        new FileInputStream(CREDENTIALS_FILE_PATH))
+			                        .createScoped(SCOPES);
 	  return credential;
   }
-  
-  public static void main(String... args) throws IOException, GeneralSecurityException {
-	  
-//	setMyProxy();
-	 
-    // Build a new authorized API client service.
-    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-    final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
-    final String range = "Dados!B5:E5";
-    Sheets service =
-    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
-            .setApplicationName(APPLICATION_NAME)
-            .build();
-    ValueRange response = service.spreadsheets().values()
-        .get(spreadsheetId, range)
-        .execute();
-    List<List<Object>> values = response.getValues();
-    System.out.println(values.toString());
-    
-	StringBuilder sb = new StringBuilder();
-	sb.append("{");
-	for (List column : values) {
-			sb.append(" \"numOpMes\": " + column.get(0).toString() + ",");
-			sb.append(" \"probabilidade\": " + column.get(1).toString() + ",");
-			sb.append(" \"payoff\": " + column.get(2).toString() + ",");
-			sb.append(" \"risco\": " + column.get(3).toString());
-	}
-	System.out.println(sb.toString());
-    
-  }
-  
-  
-  
-  public static void setMyProxy() {
-	    //A ser usado somente onde houver um proxy
-	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
-	    String myProxyPort = System.getenv("MY_PROXY_PORT");
-	    System.setProperty("https.proxyHost", myProxyAddress);
-	    System.setProperty("https.proxyPort", myProxyPort);
-  }
-  
   
   
   
   public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
 	  
-//	setMyProxy();
+
+	setMyProxy();
 	 
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -104,6 +68,63 @@ public class SheetsQuickstart2 {
     
     return tpm;    
   }  
+
   
+	public static void setMyProxy() {
+		  
+		String computername;
+		try {
+			computername = InetAddress.getLocalHost().getHostName();
+			
+			if (computername.equals(System.getenv("COMPUTER_NAME"))) {
+				
+				String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
+				String myProxyPort = System.getenv("MY_PROXY_PORT");
+				System.setProperty("https.proxyHost", myProxyAddress);
+				System.setProperty("https.proxyPort", myProxyPort);
+			
+				System.out.println("SrB: proxy configurado com sucesso!");
+				
+			}else {
+				System.out.println("SrB: computador não é do trabalho ou variável de ambiente COMPUTER_NAME não configurada. Proxy não configurado.");
+			}
+		} catch (UnknownHostException e) {
+			System.out.println("SrB: erro ao tentar obter o nome do computador.");
+			e.printStackTrace();
+		}
+	}
+  
+  
+  
+//public static void main(String... args) throws IOException, GeneralSecurityException {
+//  
+//setMyProxy();
+// 
+//// Build a new authorized API client service.
+//final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
+//final String range = "Dados!B5:E5";
+//Sheets service =
+//		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
+//        .setApplicationName(APPLICATION_NAME)
+//        .build();
+//ValueRange response = service.spreadsheets().values()
+//    .get(spreadsheetId, range)
+//    .execute();
+//List<List<Object>> values = response.getValues();
+//System.out.println(values.toString());
+//
+//StringBuilder sb = new StringBuilder();
+//sb.append("{");
+//for (List column : values) {
+//		sb.append(" \"numOpMes\": " + column.get(0).toString() + ",");
+//		sb.append(" \"probabilidade\": " + column.get(1).toString() + ",");
+//		sb.append(" \"payoff\": " + column.get(2).toString() + ",");
+//		sb.append(" \"risco\": " + column.get(3).toString());
+//}
+//System.out.println(sb.toString());
+//
+//}  
+
   
 }

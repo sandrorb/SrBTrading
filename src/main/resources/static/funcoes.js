@@ -149,8 +149,8 @@ function loadTradePerformance(){
 			simularOperacoes();
 		}
 	}).fail(function(xhr, status, errorThrown){
-		$('#msgCarrgarDadosPerformance').text("Erro no carregamento dos dados de desempenho do trade system!");
-		alert("Erro no carregamento dos dados de desempenho do trade system: " + xhr.responseText);
+		$('#msgCarrgarDadosPerformance').text("Erro no carregamento dos dados do trade system!");
+		//alert("Erro no carregamento dos dados do trade system: " + xhr.responseText);
 	});
 }
 	    
