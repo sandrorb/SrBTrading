@@ -150,7 +150,7 @@ function loadTradePerformance(){
 		}
 	}).fail(function(xhr, status, errorThrown){
 		$('#msgCarrgarDadosPerformance').text("Erro no carregamento dos dados de desempenho do trade system!");
-		alert("Erro ao salvar dados: " + xhr.responseText);
+		alert("Erro no carregamento dos dados de desempenho do trade system: " + xhr.responseText);
 	});
 }
 	    

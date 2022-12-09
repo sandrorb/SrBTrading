@@ -34,7 +34,7 @@ public class SheetsQuickstart2 {
   
   public static void main(String... args) throws IOException, GeneralSecurityException {
 	  
-	setMyProxy();
+//	setMyProxy();
 	 
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
