@@ -21,11 +21,10 @@ import srb.model.TradePerformanceModel;
 
 public class SheetsQuickstart2 {
 	
-  private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
+  private static final String APPLICATION_NAME = "SrBTrading App";
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-  //private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json";
-  private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
   
   static {
 	  System.out.println("SrB: diretório  app: " + System.getProperty("user.dir"));
@@ -36,20 +35,19 @@ public class SheetsQuickstart2 {
 		e.printStackTrace();
 	  }
 	  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
+	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS, MY_PROXY_PORT, COMPUTER_NAME e POSTGRES_PASSWORD.");
+	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com  o arquivo fora do diretório do app.");
   }
 
     
-  private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
-	    
-//	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
+  private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {   
 	  GoogleCredential credential = GoogleCredential.fromStream(
 			                        new FileInputStream(CREDENTIALS_FILE_PATH))
 			                        .createScoped(SCOPES); 
 	  return credential;
   }
   
-  
-  
+
   public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
 	  
 	setMyProxy();
