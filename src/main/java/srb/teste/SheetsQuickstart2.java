@@ -25,10 +25,11 @@ public class SheetsQuickstart2 {
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
   //private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json";
-  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
   
   static {
-	  System.out.println("SrB: diretório: " + System.getProperty("user.dir"));
+	  System.out.println("SrB: diretório  app: " + System.getProperty("user.dir"));
+	  System.out.println("SrB: diretório home: " + System.getProperty("user.home"));
 	  try {
 		System.out.println("SrB: nome do cumputador: " + InetAddress.getLocalHost().getHostName());
 	  } catch (UnknownHostException e) {
