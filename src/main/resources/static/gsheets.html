@@ -35,7 +35,15 @@
 	        	contentType: "application/json; charset=utf-8",
 	        	success: function(response){
 	        		//alert("teste");
-	        		$('#resposta').text(response.probabilidadeAcertar);	        	}
+	        		//$('#resposta').text(response.probabilidadeAcertar);
+	        		var str = "Número de Operações por mês: " + response.numOpPorMes;// + "<br> Probabilidade de Acerto: " + reponse.probabilidadeAcertar;
+	        			
+	        		$('#resposta').text(str);
+	        		//$('#resposta').append("Probabilidade de Acerto: " + "x" + reponse.probabilidadeAcertar);// + reponse.probabilidadeAcertar
+	        		
+	        		// Probabilidade de Acerto: " + reponse.probabilidadeAcertar + "<br>");
+	        		// Payoff: " + reponse.payoff + "<br> Risco: " + reponse.risco + "<br>");
+				}
 	        }).fail(function(xhr, status, errorThrown){
 	        	alert("Erro ao salvar dados: " + xhr.responseText);
 	        }); 

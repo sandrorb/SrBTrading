@@ -1,6 +1,6 @@
 function startOnLoad(){
 	plotChart();
-	buscaDadosFinanceiros();	
+	buscaDadosFinanceiros();
 }
 
 //google.charts.load('current', {packages: ['corechart', 'line']});
@@ -132,6 +132,27 @@ function buscaDadosFinanceiros(){
 
 }	
 
+
+function loadTradePerformance(){
+			
+	$('#msgCarrgarDadosPerformance').text("Carregando...");
+	$.ajax({
+		method: "POST",
+		url: "gpost2",
+		contentType: "application/json; charset=utf-8",
+		success: function(response){
+			$("#nOpPorMes").val(response.numOpPorMes);
+			$("#p").val(response.probabilidadeAcertar);
+			$('#rr').val(response.payoff);
+			$('#risco').val(response.risco);
+			$('#msgCarrgarDadosPerformance').text("Carregamento ok");
+			simularOperacoes();
+		}
+	}).fail(function(xhr, status, errorThrown){
+		$('#msgCarrgarDadosPerformance').text("Erro no carregamento dos dados de desempenho do trade system!");
+		alert("Erro ao salvar dados: " + xhr.responseText);
+	});
+}
 	    
 
 /* Início: Exemplos de configurações do gráfico */

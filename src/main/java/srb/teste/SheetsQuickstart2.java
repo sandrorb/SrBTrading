@@ -81,7 +81,7 @@ public class SheetsQuickstart2 {
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
     final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
-    final String range = "Dados!B5:E5";
+    final String range = "Dados!B5:F5";
     Sheets service =
     		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
             .setApplicationName(APPLICATION_NAME)
@@ -94,10 +94,11 @@ public class SheetsQuickstart2 {
     TradePerformanceModel tpm = new TradePerformanceModel();
     
 	for (List column : values) {
-		tpm.setNumOpPorMes(Double.parseDouble(column.get(0).toString()));
-		tpm.setProbabilidadeAcertar(Double.parseDouble(column.get(1).toString()));
-		tpm.setPayoff(Double.parseDouble(column.get(2).toString()));
-		tpm.setRisco(Double.parseDouble(column.get(3).toString()));
+		tpm.setNumOfTrade(Integer.parseInt(column.get(0).toString()));
+		tpm.setNumOpPorMes(Double.parseDouble(column.get(1).toString()));
+		tpm.setProbabilidadeAcertar(Double.parseDouble(column.get(2).toString()));
+		tpm.setPayoff(Double.parseDouble(column.get(3).toString()));
+		tpm.setRisco(Double.parseDouble(column.get(4).toString()));
 	}
     
     return tpm;    

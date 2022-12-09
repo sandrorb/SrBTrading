@@ -16,19 +16,19 @@ import srb.model.TradePerformanceModel;
 @RestController
 public class GSheetController {
 
-	@RequestMapping(value = "/g", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	public String g() {
-
-		return "GSheet ok";
-	}
-	
-	@RequestMapping(value = "/gpost", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public String gpost() {
-
-		return "GSheet gpost";
-	}	
+//	@RequestMapping(value = "/g", method = RequestMethod.GET)
+//	@ResponseStatus(HttpStatus.OK)
+//	public String g() {
+//
+//		return "GSheet ok";
+//	}
+//	
+//	@RequestMapping(value = "/gpost", method = RequestMethod.POST)
+//	@ResponseStatus(HttpStatus.OK)
+//	public String gpost() {
+//
+//		return "GSheet gpost";
+//	}	
 
 	
 	@RequestMapping(value = "/gpost2", method = RequestMethod.POST)

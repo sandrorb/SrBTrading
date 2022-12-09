@@ -17,6 +17,9 @@ public class TradePerformanceModel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	//Este número de trades não é o que é usado para a simulação. Este é o número de trades que realmente
+	//foi executado pelo trade system, enquato que o número de trades da simulação é o número de trades
+	//arbitrário para serem simulados
 	@NotNull
 	int numOfTrade;
 	
