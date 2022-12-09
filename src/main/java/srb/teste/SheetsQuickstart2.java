@@ -23,7 +23,7 @@ public class SheetsQuickstart2 {
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
   //private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json";
-  private static final String CREDENTIALS_FILE_PATH = "google-credentials-service.json"; //para o arquivo no raiz da app
+  private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app
 
     
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
