@@ -78,7 +78,8 @@ public class SheetsQuickstart {
   	    .setTransport(HTTP_TRANSPORT)
   	    .setJsonFactory(JSON_FACTORY)
   	    .setServiceAccountId("117602709337908712641")
-  	    .setServiceAccountPrivateKeyFromP12File(new File("C:\\Users\\Sandro\\eclipse-workspace\\google-credentials-service.p12"))
+//  	    .setServiceAccountPrivateKeyFromP12File(new File("C:\\Users\\Sandro\\eclipse-workspace\\google-credentials-service.p12"))
+  	    .setServiceAccountPrivateKeyFromP12File(new File("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.p12"))
   	    .setServiceAccountScopes(SCOPES)
   	    .build();
   	return credential;
@@ -89,6 +90,9 @@ public class SheetsQuickstart {
    * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
    */
   public static void main(String... args) throws IOException, GeneralSecurityException {
+	  
+	setMyProxy();
+	 
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
     final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
@@ -124,4 +128,15 @@ public class SheetsQuickstart {
 	System.out.println(sb.toString());
     
   }
+  
+  
+  
+  public static void setMyProxy() {
+	    //A ser usado somente onde houver um proxy
+	    String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
+	    String myProxyPort = System.getenv("MY_PROXY_PORT");
+	    System.setProperty("https.proxyHost", myProxyAddress);
+	    System.setProperty("https.proxyPort", myProxyPort);
+  }
+  
 }
