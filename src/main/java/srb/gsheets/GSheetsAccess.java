@@ -27,8 +27,10 @@ public class GSheetsAccess {
   private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
   
   static {
-	  System.out.println("SrB: diretório  app: " + System.getProperty("user.dir"));
-	  System.out.println("SrB: diretório home: " + System.getProperty("user.home"));
+	  System.out.println("SrB: diretório   app: " + System.getProperty("user.dir"));
+	  System.out.println("SrB: diretório  home: " + System.getProperty("user.home"));
+	  System.out.println("SrB: diretório  nome: " + System.getProperty("user.name"));
+	  System.out.println("SrB: diretório email: " + System.getProperty("user.email"));//acho que este não existe desta forma
 	  try {
 		System.out.println("SrB: nome do cumputador: " + InetAddress.getLocalHost().getHostName());
 	  } catch (UnknownHostException e) {
