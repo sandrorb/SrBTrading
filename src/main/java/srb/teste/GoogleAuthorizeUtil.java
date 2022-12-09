@@ -1,10 +1,17 @@
 package srb.teste;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+
+import org.apache.http.entity.InputStreamEntity;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -17,8 +24,13 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.Sheets.Spreadsheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.google.auth.http.HttpCredentialsAdapter;
+import com.google.auth.oauth2.GoogleCredentials;
+
+import srb.SrBTradingMain;
 
 public class GoogleAuthorizeUtil {
 	
@@ -28,7 +40,7 @@ public class GoogleAuthorizeUtil {
 //	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 	
 	private static final String TOKENS_DIRECTORY_PATH = "tokens"; //System.getProperty("user.dir");
-	private static final String CREDENTIALS_FILE_PATH = "google-credentials.json";
+	private static final String CREDENTIALS_FILE_PATH = "/google-credentials.json"; 
 	
 	private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);//Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 	
@@ -36,11 +48,12 @@ public class GoogleAuthorizeUtil {
 	private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
 		
 //	    String credentialLocation = "..";
-//	    String credentialPath = credentialLocation + "/google-credentials-desktop.json"; 
+//	    String credentialPath = credentialLocation + "google-credentials-desktop.json"; 
 	     
 		// Load client secrets. Este é o original GoogleClientSecrets.load(JSON_FACTORY, in);
-	    InputStream in = GoogleAuthorizeUtil.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-//		File f = new File(CREDENTIALS_FILE_PATH);
+	    InputStream in = SrBTradingMain.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+//		File f = new File(System.clearProperty("user.home"));
+//		System.out.println(f.getAbsoluteFile());
 //	    InputStream in = new FileInputStream(f);
 	    if (in == null) {
 	      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
@@ -97,43 +110,86 @@ public class GoogleAuthorizeUtil {
 	    
 	    return credencial;
 	}
-		
 	
-	public static String getDataSrB(String spreadSheetId, String cellLocation) throws Exception {
-
-//	    final String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
-//	    final String range = "Class Data!A2:E";
-	    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-	    Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY,  getCredentials(HTTP_TRANSPORT))
-	            .setApplicationName(APPLICATION_NAME)
-	            .build();
-	    
-	    
-//	    GoogleClientRequestInitializer KEY_INITIALIZER = CommonGoogleClientRequestInitializer.newBuilder().setKey("AIzaSyDl3D0ttyiMZyLsHdMJXPQcbPnTzfBkk04").build();	    
-//		Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-//                .setApplicationName(APPLICATION_NAME)
-//                .setGoogleClientRequestInitializer(KEY_INITIALIZER)
-//                .build();
-	    
-	    
-		//Sheets service = new Sheets(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), authorize());
+	//https://github.com/googleworkspace/java-samples/issues/93
+	static void teste() throws IOException, GeneralSecurityException {
 		
-		ValueRange response = service.spreadsheets().values().get(spreadSheetId, cellLocation).execute();
+//		File f = new File(System.clearProperty("user.home"));
+//		System.out.println(f.getAbsoluteFile());
 		
-		List<List<Object>> values = response.getValues();
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		for (List column : values) {
-				sb.append(" \"numOpMes\": " + column.get(0).toString() + ",");
-				sb.append(" \"probabilidade\": " + column.get(1).toString() + ",");
-				sb.append(" \"payoff\": " + column.get(2).toString() + ",");
-				sb.append(" \"risco\": " + column.get(3).toString());
+//		InputStream in = SrBTradingMain.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+//		FileInputStream in = new FileInputStream(new File("C:\\Users\\Sandro\\eclipse-workspace\\google-credentials.json"));
+		FileInputStream in = new FileInputStream(new File("C:\\Users\\Sandro\\eclipse-workspace\\google-credentials-OAuth2-desktop.json"));
+		Scanner s = new Scanner(in);
+		while (s.hasNextLine()) {
+			System.out.println(s.nextLine());
 		}
-		sb.append("}");
+		if (in == null) {
+		        throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+		}
+		GoogleCredentials googleCredentials = GoogleCredentials
+				.fromStream(in)
+				.createScoped(SCOPES);
+		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+		Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpCredentialsAdapter(googleCredentials))
+		                .setApplicationName(APPLICATION_NAME)
+		                .build();
 		
-		return sb.toString();
+		ValueRange response = service.spreadsheets()
+				.values()
+				.get("1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE", "Dados!B5:E5")
+				.execute();
+		
+//		List<List<Object>> values = response.getValues();
+		
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("{");
+//		for (List column : values) {
+//				sb.append(" \"numOpMes\": " + column.get(0).toString() + ",");
+//				sb.append(" \"probabilidade\": " + column.get(1).toString() + ",");
+//				sb.append(" \"payoff\": " + column.get(2).toString() + ",");
+//				sb.append(" \"risco\": " + column.get(3).toString());
+//		}		
 	}
+
+	
+	
+	
+//	public static String getDataSrB(String spreadSheetId, String cellLocation) throws Exception {
+//
+////	    final String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
+////	    final String range = "Class Data!A2:E";
+//	    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//	    Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY,  getCredentials(HTTP_TRANSPORT))
+//	            .setApplicationName(APPLICATION_NAME)
+//	            .build();
+//	    
+//	    
+////	    GoogleClientRequestInitializer KEY_INITIALIZER = CommonGoogleClientRequestInitializer.newBuilder().setKey("AIzaSyDl3D0ttyiMZyLsHdMJXPQcbPnTzfBkk04").build();	    
+////		Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+////                .setApplicationName(APPLICATION_NAME)
+////                .setGoogleClientRequestInitializer(KEY_INITIALIZER)
+////                .build();
+//	    
+//	    
+//		//Sheets service = new Sheets(GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance(), authorize());
+//		
+//		ValueRange response = service.spreadsheets().values().get(spreadSheetId, cellLocation).execute();
+//		
+//		List<List<Object>> values = response.getValues();
+//		
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("{");
+//		for (List column : values) {
+//				sb.append(" \"numOpMes\": " + column.get(0).toString() + ",");
+//				sb.append(" \"probabilidade\": " + column.get(1).toString() + ",");
+//				sb.append(" \"payoff\": " + column.get(2).toString() + ",");
+//				sb.append(" \"risco\": " + column.get(3).toString());
+//		}
+//		sb.append("}");
+//		
+//		return sb.toString();
+//	}
 
 	
 	
