@@ -15,6 +15,8 @@ import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
+import srb.model.TradePerformanceModel;
+
 public class SheetsQuickstart2 {
 	
   private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
@@ -68,5 +70,38 @@ public class SheetsQuickstart2 {
 	    System.setProperty("https.proxyHost", myProxyAddress);
 	    System.setProperty("https.proxyPort", myProxyPort);
   }
+  
+  
+  
+  
+  public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
+	  
+	setMyProxy();
+	 
+    // Build a new authorized API client service.
+    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+    final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
+    final String range = "Dados!B5:E5";
+    Sheets service =
+    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
+            .setApplicationName(APPLICATION_NAME)
+            .build();
+    ValueRange response = service.spreadsheets().values()
+        .get(spreadsheetId, range)
+        .execute();
+    List<List<Object>> values = response.getValues();
+
+    TradePerformanceModel tpm = new TradePerformanceModel();
+    
+	for (List column : values) {
+		tpm.setNumOpPorMes(Double.parseDouble(column.get(0).toString()));
+		tpm.setProbabilidadeAcertar(Double.parseDouble(column.get(1).toString()));
+		tpm.setPayoff(Double.parseDouble(column.get(2).toString()));
+		tpm.setRisco(Double.parseDouble(column.get(3).toString()));
+	}
+    
+    return tpm;    
+  }  
+  
   
 }
