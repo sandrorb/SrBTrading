@@ -24,7 +24,8 @@ import java.util.List;
 public class SheetsQuickstart {
   private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-  private static final String TOKENS_DIRECTORY_PATH = "tokens";
+  private static final String TOKENS_DIRECTORY_PATH = "C:\\Users\\Sandro\\eclipse-workspace\\tokens";
+//  private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
   /**
    * Global instance of the scopes required by this quickstart.
