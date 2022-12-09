@@ -31,13 +31,13 @@ public class SheetsQuickstart2 {
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
 //	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
 	  
-	  if ( InetAddress.getLocalHost().getHostName().equals("6a1c4b9f-fe40-4e2c-b9b2-218e16c26d15")) {
+	  if ( InetAddress.getLocalHost().getHostName().equals("6a1c4b9f-fe40-4e2c-b9b2-218e16c26d15")) {//09b644ec-f967-4f19-b2e7-573ab8f85757
 		  System.out.println("SrB: neste computador, a credencial google é por meio de buildpacke");
 	  }
 	  
 	  GoogleCredential credential = GoogleCredential.fromStream(
 			                        new FileInputStream(CREDENTIALS_FILE_PATH))
-			                        .createScoped(SCOPES);
+			                        .createScoped(SCOPES); 
 	  return credential;
   }
   
