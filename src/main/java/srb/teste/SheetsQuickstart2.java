@@ -77,7 +77,7 @@ public class SheetsQuickstart2 {
   
   public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
 	  
-	setMyProxy();
+//	setMyProxy();
 	 
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
