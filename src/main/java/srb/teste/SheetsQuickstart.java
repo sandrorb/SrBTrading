@@ -16,6 +16,7 @@ import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,9 +39,9 @@ public class SheetsQuickstart {
   private static final List<String> SCOPES =
       Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 //  private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\Sandro\\eclipse-workspace\\google-credentials-OAuth2-desktop.json";
-  private static final String CREDENTIALS_FILE_PATH = "/google-credentials-OAuth2-desktop.json";
+//  private static final String CREDENTIALS_FILE_PATH = "/google-credentials-OAuth2-desktop.json";
 //  private static final String CREDENTIALS_FILE_PATH = "/google-credentials-OAuth2-web.json";
-//  private static final String CREDENTIALS_FILE_PATH = "/google-credentials-service.json";
+  private static final String CREDENTIALS_FILE_PATH = "/google-credentials-service.json";
 
   /**
    * Creates an authorized Credential object.
@@ -74,7 +75,7 @@ public class SheetsQuickstart {
   
   //https://stackoverflow.com/questions/64135720/how-do-you-access-a-google-sheet-with-a-service-account-from-java
   private static GoogleCredential getGoogleCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException, GeneralSecurityException {
-  GoogleCredential credential = new GoogleCredential.Builder()
+	  GoogleCredential credential = new GoogleCredential.Builder()
   	    .setTransport(HTTP_TRANSPORT)
   	    .setJsonFactory(JSON_FACTORY)
   	    .setServiceAccountId("117602709337908712641")
@@ -82,8 +83,19 @@ public class SheetsQuickstart {
   	    .setServiceAccountPrivateKeyFromP12File(new File("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.p12"))
   	    .setServiceAccountScopes(SCOPES)
   	    .build();
+  
   	return credential;
   }
+  
+  
+  private static GoogleCredential getGoogleCredentialsNovo(final NetHttpTransport HTTP_TRANSPORT) throws IOException, GeneralSecurityException {
+	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
+	  return credential;
+  }
+  
+  
+  
+  
   
   /**
    * Prints the names and majors of students in a sample spreadsheet:
@@ -96,10 +108,12 @@ public class SheetsQuickstart {
     // Build a new authorized API client service.
     final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
     final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
-    final String range = "Sheet2!A1:D1";
+//    final String range = "Sheet2!A1:D1";
+    final String range = "Dados!B5:E5";
     Sheets service =
 //        new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-        new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentials(HTTP_TRANSPORT))
+//        new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentials(HTTP_TRANSPORT))
+    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo(HTTP_TRANSPORT))
             .setApplicationName(APPLICATION_NAME)
             .build();
     ValueRange response = service.spreadsheets().values()
