@@ -29,7 +29,7 @@ public class SheetsQuickstart2 {
 
     
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {
-//	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES);
+//	  GoogleCredential credential = GoogleCredential.fromStream(new FileInputStream("C:\\Users\\sandro.boschetti\\eclipse-workspace\\google-credentials-service.json")).createScoped(SCOPES); 
 	  GoogleCredential credential = GoogleCredential.fromStream(
 			                        new FileInputStream(CREDENTIALS_FILE_PATH))
 			                        .createScoped(SCOPES);
@@ -40,7 +40,6 @@ public class SheetsQuickstart2 {
   
   public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
 	  
-
 	setMyProxy();
 	 
     // Build a new authorized API client service.
@@ -86,7 +85,7 @@ public class SheetsQuickstart2 {
 				System.out.println("SrB: proxy configurado com sucesso!");
 				
 			}else {
-				System.out.println("SrB: computador não é do trabalho ou variável de ambiente COMPUTER_NAME não configurada. Proxy não configurado.");
+				System.out.println("SrB: computador " + computername + " não é do trabalho ou variável de ambiente COMPUTER_NAME não configurada. Proxy não configurado.");
 			}
 		} catch (UnknownHostException e) {
 			System.out.println("SrB: erro ao tentar obter o nome do computador.");
