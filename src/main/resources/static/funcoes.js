@@ -141,10 +141,10 @@ function loadTradePerformance(){
 		url: "gpost2",
 		contentType: "application/json; charset=utf-8",
 		success: function(response){
-			$("#nOpPorMes").val(response.numOpPorMes);
-			$("#p").val(response.probabilidadeAcertar);
-			$('#rr').val(response.payoff);
-			$('#risco').val(response.risco);
+			$("#nOpPorMes").val(parseFloat(response.numOpPorMes).toFixed(2));
+			$("#p").val(parseFloat(response.probabilidadeAcertar).toFixed(2));
+			$('#rr').val(parseFloat(response.payoff).toFixed(2));
+			$('#risco').val(parseFloat(response.risco).toFixed(2));
 			$('#msgCarrgarDadosPerformance').text("Carregamento ok");
 			simularOperacoes();
 		}
