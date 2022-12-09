@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SrB Trading</title>
+	<link rel="icon" type="imagem/png" href="logo-bfs.png" />
+    <link href="styles.css" rel="stylesheet">
+    
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+<button type="button" class="btn btn-primary" onclick="testePost2()">EndPoint Teste</button>
+
+<div id="resposta"></div>
+
+
+
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--XXXXXXXXXXXXXXXXXXXXXX FUNÇOES JAVASCRIPT XXXXXXXXXXXXXXXXXXXXXXXXX-->
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+
+	<script type="text/javascript">
+	
+		function testePost2(){
+			$.ajax({
+	        	method: "POST",
+	        	url: "gpost2",
+	        	contentType: "application/json; charset=utf-8",
+	        	success: function(response){
+	        		//alert("teste");
+	        		$('#resposta').text(response.probabilidadeAcertar);	        	}
+	        }).fail(function(xhr, status, errorThrown){
+	        	alert("Erro ao salvar dados: " + xhr.responseText);
+	        }); 
+		}	
+	
+	
+		function testePost(){
+			$.ajax({
+	        	method: "POST",
+	        	url: "gpost",
+	        	contentType: "application/json; charset=utf-8",
+	        	success: function(response){
+	        		$('#resposta').text(response)
+	        	}
+	        }).fail(function(xhr, status, errorThrown){
+	        	alert("Erro ao salvar dados: " + xhr.responseText);
+	        }); 
+		}
+		
+		
+		function temp(){
+			$.get("g", function(resultado){
+				$("#resposta").html(resultado);
+			})
+		}
+	</script>
+	
+	
+
+	<!-- Importação Bootstrap além da que já está no head -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    	    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    	    crossorigin="anonymous"></script>
+    <!-- Importação do JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>	
+
+
+</body>
+</html>
