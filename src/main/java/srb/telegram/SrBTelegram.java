@@ -79,6 +79,9 @@ public class SrBTelegram extends TimerTask {
     	timer.schedule(srbTeste, new Date(), milliSeconds);
     }
 	
+	
+	// Parametrizar para pegar msg diferentes de células diferentes.
+	// Por o código de produção da mensagem em uma classe separada da do seriviço de envio de mensagem.
 	public String getMsg() {
 		String msg = "";
 		try {
