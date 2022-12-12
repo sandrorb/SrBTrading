@@ -39,47 +39,11 @@ public class GSheetsAccess {
 	  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
 	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS, MY_PROXY_PORT, COMPUTER_NAME e POSTGRES_PASSWORD.");
 	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com  o arquivo fora do diretório do app.");
-  }
-
-    
-  private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {   
-	  GoogleCredential credential = GoogleCredential.fromStream(
-			                        new FileInputStream(CREDENTIALS_FILE_PATH))
-			                        .createScoped(SCOPES); 
-	  return credential;
-  }
-  
-
-  public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
 	  
-	setMyProxy();
-	 
-    // Build a new authorized API client service.
-    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-    final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
-    final String range = "Dados!B5:F5";
-    Sheets service =
-    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
-            .setApplicationName(APPLICATION_NAME)
-            .build();
-    ValueRange response = service.spreadsheets().values()
-        .get(spreadsheetId, range)
-        .execute();
-    List<List<Object>> values = response.getValues();
+	  setMyProxy();
+  }
 
-    TradePerformanceModel tpm = new TradePerformanceModel();
-    
-	for (List column : values) {
-		tpm.setNumOfTrade(Integer.parseInt(column.get(0).toString()));
-		tpm.setNumOpPorMes(Double.parseDouble(column.get(1).toString()));
-		tpm.setProbabilidadeAcertar(Double.parseDouble(column.get(2).toString()));
-		tpm.setPayoff(Double.parseDouble(column.get(3).toString()));
-		tpm.setRisco(Double.parseDouble(column.get(4).toString()));
-	}
-    
-    return tpm;    
-  }  
-
+  
   
 	public static void setMyProxy() {
 		  
@@ -104,6 +68,65 @@ public class GSheetsAccess {
 			e.printStackTrace();
 		}
 	}
+
+	
+	
+	
+	
+  private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {   
+	  GoogleCredential credential = GoogleCredential.fromStream(
+			                        new FileInputStream(CREDENTIALS_FILE_PATH))
+			                        .createScoped(SCOPES); 
+	  return credential;
+  }
+  
+
+  
+  public static TradePerformanceModel getTradePerformanceModel() throws IOException, GeneralSecurityException {
+    // Build a new authorized API client service.
+    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+    final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
+    final String range = "Dados!B5:F5";
+    Sheets service =
+    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
+            .setApplicationName(APPLICATION_NAME)
+            .build();
+    ValueRange response = service.spreadsheets().values()
+        .get(spreadsheetId, range)
+        .execute();
+    List<List<Object>> values = response.getValues();
+
+    TradePerformanceModel tpm = new TradePerformanceModel();
+    
+	for (List column : values) {
+		tpm.setNumOfTrade(Integer.parseInt(column.get(0).toString()));
+		tpm.setNumOpPorMes(Double.parseDouble(column.get(1).toString()));
+		tpm.setProbabilidadeAcertar(Double.parseDouble(column.get(2).toString()));
+		tpm.setPayoff(Double.parseDouble(column.get(3).toString()));
+		tpm.setRisco(Double.parseDouble(column.get(4).toString()));
+	}
+    
+    return tpm;    
+  }
+
+
+  public static String getIFR2Dado() throws IOException, GeneralSecurityException {
+	    // Build a new authorized API client service.
+	    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+	    final String spreadsheetId = "1aD7IasUGozCAgQsZd0PnmHNcbTC_opX9SPZgdn74qVE";
+	    final String range = "IFR2!d4";
+	    Sheets service =
+	    		new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getGoogleCredentialsNovo())
+	            .setApplicationName(APPLICATION_NAME)
+	            .build();
+	    ValueRange response = service.spreadsheets().values()
+	        .get(spreadsheetId, range)
+	        .execute();
+	    List<List<Object>> values = response.getValues();
+	    
+	    return (String) values.get(0).get(0);    
+	  }  
+
   
   
   

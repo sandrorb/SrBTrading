@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import srb.gsheets.GSheetsAccess;
 import srb.model.TradePerformanceModel;
+import srb.telegram.SrBTelegram;
 
 @RestController
 public class GSheetsController {
