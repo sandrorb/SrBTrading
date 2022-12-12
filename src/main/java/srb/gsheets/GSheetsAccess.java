@@ -24,7 +24,8 @@ public class GSheetsAccess {
   private static final String APPLICATION_NAME = "SrBTrading App";
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
-  private static final String CREDENTIALS_FILE_PATH = "google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+//  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
+  private static final String CREDENTIALS_FILE_PATH = System.getenv("CREDENTIALS_FILE_PATH");
   
   static {
 	  System.out.println("SrB: diretório   app: " + System.getProperty("user.dir"));
@@ -40,7 +41,7 @@ public class GSheetsAccess {
 	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS, MY_PROXY_PORT, COMPUTER_NAME e POSTGRES_PASSWORD.");
 	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com  o arquivo fora do diretório do app.");
 	  
-//	  setMyProxy();
+	  setMyProxy();
   }
 
   
@@ -58,7 +59,7 @@ public class GSheetsAccess {
 				System.setProperty("https.proxyHost", myProxyAddress);
 				System.setProperty("https.proxyPort", myProxyPort);
 			
-				System.out.println("SrB: proxy configurado com sucesso!");
+				System.out.println("SrB: proxy configurado com sucesso na classe GSheetsAccess!");
 				
 			}else {
 				System.out.println("SrB: computador " + computername + " não é do trabalho ou variável de ambiente COMPUTER_NAME não configurada. Proxy não configurado.");

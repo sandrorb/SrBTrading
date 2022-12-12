@@ -4,41 +4,75 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Authenticator;
+import java.net.InetAddress;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import net.bytebuddy.asm.Advice.This;
 import srb.gsheets.GSheetsAccess;
 
 
 public class SrBTelegram extends TimerTask {
 
 	static {
-		/********************************************************************/
-		/* Esta parte é somente para o computador do trabalho que tem proxy */
-		/********************************************************************/
-//    	final String authUser = System.getenv("MY_PROXY_USER");
-//    	final String authPassword = System.getenv("MY_PROXY_PASSWORD");
-//    	Authenticator.setDefault(
-//    	  new Authenticator() {
-//    	    @Override
-//    	    public PasswordAuthentication getPasswordAuthentication() {
-//    	      return new PasswordAuthentication(authUser, authPassword.toCharArray());
-//    	    }
-//    	  }
-//    	);
-//		System.setProperty("https.proxyHost", System.getenv("MY_PROXY_ADDRESS"));
-//		System.setProperty("https.proxyPort", System.getenv("MY_PROXY_PORT"));
-//    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");	
-    	/********************************************************************/
-    	/********************************************************************/
+		configurarAutenticacaoProxy();
 	}
 	
-//	public static void main(String[] args) {
+	public static void configurarAutenticacaoProxy() {
+		/********************************************************************/
+		/* Esta parte é somente para o computador do trabalho que tem proxy */
+		/* e é uma configuração um pouco diferente daquela que há para      */
+		/* o GoogleSheets. Naquela não é necessário senha.
+		/********************************************************************/
+		String computerName = null;
+		try {
+			computerName = InetAddress.getLocalHost().getHostName();
+		} catch (UnknownHostException e) {
+			System.out.println("SrB: não foi possível obter o nome do computador via .getHostName(), portanto, o proxy não será configurado para a classe " + This.class);
+			//e.printStackTrace();
+		}
+		
+		String computerNameEnv = System.getenv("COMPUTER_NAME");
+		if (computerNameEnv.trim().equals("") || computerNameEnv == null) {
+			System.out.println("SrB: a variável de ambiente COMPUTER_NAME não está configurada!");
+		}
+		
+		System.out.println("   Variável computerName: " + computerName);
+		System.out.println("Variável computerNameEnv: " + computerNameEnv);
+		
+		if (computerName != null && computerName.equals(computerNameEnv)) {
+	    	final String authUser = System.getenv("MY_PROXY_USER");
+	    	final String authPassword = System.getenv("MY_PROXY_PASSWORD");
+	    	Authenticator.setDefault(
+	    	  new Authenticator() {
+	    	    @Override
+	    	    public PasswordAuthentication getPasswordAuthentication() {
+	    	      return new PasswordAuthentication(authUser, authPassword.toCharArray());
+	    	    }
+	    	  }
+	    	);
+			System.setProperty("https.proxyHost", System.getenv("MY_PROXY_ADDRESS"));
+			System.setProperty("https.proxyPort", System.getenv("MY_PROXY_PORT"));
+	    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
+	    	
+	    	System.out.println("SrB: proxy configurado dentro da classe SrBTelegram para o computador " + computerName);
+		}
+    	/********************************************************************/
+    	/********************************************************************/
+    	
+	}
+	
+	public static void main(String[] args) {
+//		start(1000*5);
+		enviaMsg("Teste!");
+	}
+	
 	public static void start(int milliSeconds) {
     	Timer timer = new Timer();
     	SrBTelegram srbTeste = new SrBTelegram();
