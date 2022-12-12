@@ -39,8 +39,10 @@ public class SrBTelegram extends TimerTask {
 		}
 		
 		String computerNameEnv = System.getenv("COMPUTER_NAME");
-		if (computerNameEnv.trim().equals("") || computerNameEnv == null) {
-			System.out.println("SrB: a variável de ambiente COMPUTER_NAME não está configurada!");
+		// Primeiro teste se é null. Se for, ja vai para o código.
+		if (computerNameEnv == null || computerNameEnv.trim().equals("")) {
+			System.out.println("SrB: a variável de ambiente COMPUTER_NAME não está configurada e,");
+			System.out.println("     portanto, o código para proxy não será executado em SrBTelegram.");
 		}
 		
 		System.out.println("   Variável computerName: " + computerName);
