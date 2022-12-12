@@ -7,6 +7,10 @@ import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class TesteTelegram {
 
@@ -31,7 +35,46 @@ public class TesteTelegram {
     	/********************************************************************/
     	/********************************************************************/
     	
+    	String msg = "Hello, World!";
     	
+//    	try {
+//			msg = GSheetsAccessIFR2.getTradePerformanceModel("IFR2!D1");
+//			System.out.println("SrB: dentro de TesteTelegram tentando ler o sheet: " + msg);
+//		} catch (IOException e) {
+//			msg = "SrB: houve um erro ao tentar obter a informação";
+//			System.out.println(msg);
+//			e.printStackTrace();
+//		} catch (GeneralSecurityException e) {
+//			msg = "SrB: houve um erro ao tentar obter a informação";
+//			System.out.println(msg);
+//			e.printStackTrace();
+//		}
+        
+        int minSeconds = 1000 * 5; // milisegundos
+       
+    	Timer timer = new Timer();
+    	SrBTeste geraDados = new SrBTeste(msg);
+    	timer.schedule(geraDados, new Date(), minSeconds);
+        
+//        try {        	
+//            URL url = new URL(urlString);
+//            URLConnection conn = url.openConnection();
+//            System.out.println("URLConnection: " + conn);
+//
+//            InputStream is = new BufferedInputStream(conn.getInputStream());
+//            System.out.println("Mensagem enviada");            
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+	
+}
+
+class SrBTeste extends TimerTask{
+
+	private String urlString;
+	
+	SrBTeste(String msg){
         String urlString = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s";
 
         String apiToken = System.getenv("TELEGRAM_API_TOKEN");
@@ -39,12 +82,16 @@ public class TesteTelegram {
       
         String chatId = System.getenv("TELEGRAM_CHAT_ID");
         System.out.println("TELEGRAM_CHAT_ID: " + chatId);
-        
-        String text = "Hello world!";
 
-        urlString = String.format(urlString, apiToken, chatId, text);
+        urlString = String.format(urlString, apiToken, chatId, msg);
         System.out.println(urlString);
+        
+        this.urlString = urlString;
+	}
 
+	@Override
+	public void run() {
+		
         try {        	
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
@@ -55,5 +102,7 @@ public class TesteTelegram {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+		
+	}
+	
 }
