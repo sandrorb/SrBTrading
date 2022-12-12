@@ -12,7 +12,7 @@ public class SrBTradingMain {
 		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
-		SrBTelegram.start();
+		SrBTelegram.start(1000*5);
 		
 	}
 

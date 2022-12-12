@@ -39,11 +39,10 @@ public class SrBTelegram extends TimerTask {
 	}
 	
 //	public static void main(String[] args) {
-	public static void start() {
-        int minSeconds = 1000 * 10 * 60; // milisegundos
+	public static void start(int milliSeconds) {
     	Timer timer = new Timer();
     	SrBTelegram srbTeste = new SrBTelegram();
-    	timer.schedule(srbTeste, new Date(), minSeconds);
+    	timer.schedule(srbTeste, new Date(), milliSeconds);
     }
 	
 	public String getMsg() {
