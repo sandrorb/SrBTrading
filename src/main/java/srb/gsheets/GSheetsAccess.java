@@ -40,7 +40,7 @@ public class GSheetsAccess {
 	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS, MY_PROXY_PORT, COMPUTER_NAME e POSTGRES_PASSWORD.");
 	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com  o arquivo fora do diretório do app.");
 	  
-	  setMyProxy();
+//	  setMyProxy();
   }
 
   

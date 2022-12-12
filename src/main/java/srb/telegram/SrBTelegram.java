@@ -21,19 +21,19 @@ public class SrBTelegram extends TimerTask {
 		/********************************************************************/
 		/* Esta parte é somente para o computador do trabalho que tem proxy */
 		/********************************************************************/
-    	final String authUser = System.getenv("MY_PROXY_USER");
-    	final String authPassword = System.getenv("MY_PROXY_PASSWORD");
-    	Authenticator.setDefault(
-    	  new Authenticator() {
-    	    @Override
-    	    public PasswordAuthentication getPasswordAuthentication() {
-    	      return new PasswordAuthentication(authUser, authPassword.toCharArray());
-    	    }
-    	  }
-    	);
-		System.setProperty("https.proxyHost", System.getenv("MY_PROXY_ADDRESS"));
-		System.setProperty("https.proxyPort", System.getenv("MY_PROXY_PORT"));
-    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");	
+//    	final String authUser = System.getenv("MY_PROXY_USER");
+//    	final String authPassword = System.getenv("MY_PROXY_PASSWORD");
+//    	Authenticator.setDefault(
+//    	  new Authenticator() {
+//    	    @Override
+//    	    public PasswordAuthentication getPasswordAuthentication() {
+//    	      return new PasswordAuthentication(authUser, authPassword.toCharArray());
+//    	    }
+//    	  }
+//    	);
+//		System.setProperty("https.proxyHost", System.getenv("MY_PROXY_ADDRESS"));
+//		System.setProperty("https.proxyPort", System.getenv("MY_PROXY_PORT"));
+//    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");	
     	/********************************************************************/
     	/********************************************************************/
 	}
