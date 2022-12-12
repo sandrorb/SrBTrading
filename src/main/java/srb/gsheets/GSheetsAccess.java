@@ -38,8 +38,10 @@ public class GSheetsAccess {
 		e.printStackTrace();
 	  }
 	  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
-	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS, MY_PROXY_PORT, COMPUTER_NAME e POSTGRES_PASSWORD.");
-	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com  o arquivo fora do diretório do app.");
+	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS,");
+	  System.out.println("     MY_PROXY_PORT, COMPUTER_NAME, POSTGRES_PASSWORD, TELEGRAM_API_TOKEN e TELEGRAM_CHAT_ID");
+	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com");
+	  System.out.println("     o arquivo fora do diretório do app.");
 	  
 	  setMyProxy();
   }
