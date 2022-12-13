@@ -41,7 +41,7 @@ public class SrBTelegramBot extends TelegramLongPollingBot{
 				String text = message.getText();
 				if (text.equals("/help")) {
 					SendMessage sm = new SendMessage();
-					sm.setText("Sinto em te desapontar, mas por hora, o único comando que eu reconheço é o /oi mesmo. Em breve eu atenderei por mais comandos.");
+					sm.setText("Sinto em te desapontar, mas até o momento o único comando que eu reconheço é o /oi mesmo. Em breve eu atenderei por mais comandos.");
 					sm.setParseMode(ParseMode.MARKDOWN);
 					sm.setChatId(message.getChatId().toString());
 					try {
