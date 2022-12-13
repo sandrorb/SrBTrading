@@ -17,7 +17,7 @@ import srb.gsheets.GSheetsAccess;
 public class SrBTelegram extends TimerTask {
 		
 	public static void main(String[] args) {
-		ProxyUtil.configurarAutenticacaoProxy();
+//		ProxyUtil.configurarAutenticacaoProxy();
 //		start(1000*5);
 		enviaMsg("Teste!");
 	}
