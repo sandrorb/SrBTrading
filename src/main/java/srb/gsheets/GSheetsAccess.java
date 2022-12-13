@@ -26,56 +26,8 @@ public class GSheetsAccess {
   private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 //  private static final String CREDENTIALS_FILE_PATH = "../google-credentials.json"; //para o arquivo no raiz da app, nome do arquivo sem caminho
   private static final String CREDENTIALS_FILE_PATH = System.getenv("CREDENTIALS_FILE_PATH");
-  
-  static {
-	  System.out.println("SrB: diretório   app: " + System.getProperty("user.dir"));
-	  System.out.println("SrB: diretório  home: " + System.getProperty("user.home"));
-	  System.out.println("SrB: diretório  nome: " + System.getProperty("user.name"));
-	  System.out.println("SrB: diretório email: " + System.getProperty("user.email"));//acho que este não existe desta forma
-	  try {
-		System.out.println("SrB: nome do cumputador: " + InetAddress.getLocalHost().getHostName());
-	  } catch (UnknownHostException e) {
-		e.printStackTrace();
-	  }
-	  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
-	  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS,");
-	  System.out.println("     MY_PROXY_PORT, COMPUTER_NAME, POSTGRES_PASSWORD, TELEGRAM_API_TOKEN e TELEGRAM_CHAT_ID");
-	  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com");
-	  System.out.println("     o arquivo fora do diretório do app.");
-	  
-	  setMyProxy();
-  }
 
-  
-  
-	public static void setMyProxy() {
-		  
-		String computername;
-		try {
-			computername = InetAddress.getLocalHost().getHostName();
-			
-			if (computername.equals(System.getenv("COMPUTER_NAME"))) {
-				
-				String myProxyAddress = System.getenv("MY_PROXY_ADDRESS");
-				String myProxyPort = System.getenv("MY_PROXY_PORT");
-				System.setProperty("https.proxyHost", myProxyAddress);
-				System.setProperty("https.proxyPort", myProxyPort);
-			
-				System.out.println("SrB: proxy configurado com sucesso na classe GSheetsAccess!");
-				
-			}else {
-				System.out.println("SrB: computador " + computername + " não é do trabalho ou variável de ambiente COMPUTER_NAME não configurada. Proxy não configurado.");
-			}
-		} catch (UnknownHostException e) {
-			System.out.println("SrB: erro ao tentar obter o nome do computador.");
-			e.printStackTrace();
-		}
-	}
 
-	
-	
-	
-	
   private static GoogleCredential getGoogleCredentialsNovo() throws IOException, GeneralSecurityException {   
 	  GoogleCredential credential = GoogleCredential.fromStream(
 			                        new FileInputStream(CREDENTIALS_FILE_PATH))

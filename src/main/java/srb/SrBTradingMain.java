@@ -10,6 +10,8 @@ public class SrBTradingMain {
 
 	public static void main(String[] args) {
 		
+		ProxyUtil.configurarAutenticacaoProxy();
+		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
 //		SrBTelegram.start(1000*5);
