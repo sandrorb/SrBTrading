@@ -37,6 +37,7 @@ public class ProxyUtil {
 		if (computerName != null && computerName.equals(computerNameEnv)) {
 	    	final String authUser = System.getenv("MY_PROXY_USER");
 	    	final String authPassword = System.getenv("MY_PROXY_PASSWORD");
+    	    System.out.println("SrB: autenticando proxy com " + authUser + " e " + authPassword.toString()); 
 	    	Authenticator.setDefault(
 	    	  new Authenticator() {
 	    	    @Override
@@ -50,6 +51,7 @@ public class ProxyUtil {
 	    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
 	    		    	
 	    	System.out.println("SrB: o proxy foi configurado para o computador " + computerName);
+	    	System.out.println("SrB: endereço e porta " + System.getenv("MY_PROXY_ADDRESS") + " e " + System.getenv("MY_PROXY_PORT"));
 		}
 		
 //		  System.out.println("SrB: diretório   app: " + System.getProperty("user.dir"));

@@ -14,12 +14,12 @@ public class SrBTradingMain {
 		
 		ProxyUtil.configurarAutenticacaoProxy();
 		
-		try {
-			SrBTelegramBotMain.main(null);
-		} catch (TelegramApiException e) {
-			System.out.println("SrB: a tentativa de inicar o TelegramBot falhou!");
-			e.printStackTrace(); 
-		}
+//		try {
+//			SrBTelegramBotMain.main(null);
+//		} catch (TelegramApiException e) {
+//			System.out.println("SrB: a tentativa de inicar o TelegramBot falhou!");
+//			e.printStackTrace(); 
+//		}
 		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
