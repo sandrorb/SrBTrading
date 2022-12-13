@@ -25,7 +25,7 @@ public class SrBTelegramBot extends TelegramLongPollingBot{
 				String text = message.getText();
 				if (text.equals("/oi")) {
 					SendMessage sm = new SendMessage();
-					sm.setText("Olá, bem-vindo(a)! Sou o robô do Sandro.");
+					sm.setText("Olá, bem-vindo(a)! Sou o robô do Sandro. Seu id é " + message.getChatId().toString() + ". Para ver os comandos disponívels, digite /help");
 					sm.setParseMode(ParseMode.MARKDOWN);
 					sm.setChatId(message.getChatId().toString());
 					try {
@@ -35,6 +35,23 @@ public class SrBTelegramBot extends TelegramLongPollingBot{
 					}
 				}
 			}
+			
+			
+			if (message.hasText()) {
+				String text = message.getText();
+				if (text.equals("/help")) {
+					SendMessage sm = new SendMessage();
+					sm.setText("Sinto em te desapontar, mas por hora, o único comando que eu reconheço é o /oi mesmo. Em breve eu atenderei por mais comandos.");
+					sm.setParseMode(ParseMode.MARKDOWN);
+					sm.setChatId(message.getChatId().toString());
+					try {
+						execute(sm);
+					} catch (TelegramApiException e) {
+						e.printStackTrace();
+					}
+				}
+			}			
+			
 		}
 		
 	}
