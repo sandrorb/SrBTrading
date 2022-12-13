@@ -3,18 +3,13 @@ package srb.telegram;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Authenticator;
-import java.net.InetAddress;
-import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import net.bytebuddy.asm.Advice.This;
 import srb.ProxyUtil;
 import srb.gsheets.GSheetsAccess;
 
