@@ -12,16 +12,13 @@ public class SrBTelegramBot extends TelegramLongPollingBot{
 	@Override
 	public void onUpdateReceived(Update update) {
 		
-		System.out.println("Dentro de onUpdateReceived()");
-		
 		if (update.hasMessage()) {
 			Message message = update.getMessage();
 			if (message.hasText()) {
 				String text = message.getText();
 				if (text.equals("/oi")) {
-					System.out.println("Olá, o comando /oi foi acionado!");
 					SendMessage sm = new SendMessage();
-					sm.setText("Olá! Bem-vindo! Sou o robô do Sandro.");
+					sm.setText("Olá, bem-vindo(a)! Sou o robô do Sandro.");
 					sm.setParseMode(ParseMode.MARKDOWN);
 					sm.setChatId(message.getChatId().toString());
 					try {
