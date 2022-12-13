@@ -18,7 +18,7 @@ public class SrBTradingMain {
 			SrBTelegramBotMain.main(null);
 		} catch (TelegramApiException e) {
 			System.out.println("SrB: a tentativa de inicar o TelegramBot falhou!");
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		
 		SpringApplication.run(SrBTradingMain.class, args);
