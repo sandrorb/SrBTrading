@@ -55,18 +55,7 @@
 		<dependency>
       		<groupId>org.springframework.boot</groupId>
       		<artifactId>spring-boot-starter-validation</artifactId>
-    	</dependency>        
-
-		<dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <!-- O BD no Heroku é PG versão 14.4. Parece não haver pom para esta versão. -->
-		    <!-- Mas como ao por a versão última 42.4.1, o Eclipse informa que está
-		         fazendo um overrinding com a versão 42.3.6-->
-		    <!--<version>42.4.1</version>-->
-      		<scope>runtime</scope>
-		</dependency>
-		
+    	</dependency>        	
 		
 		<dependency>
 		    <groupId>com.google.api-client</groupId>
