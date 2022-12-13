@@ -10,7 +10,7 @@ public class SrBTradingMain {
 
 	public static void main(String[] args) {
 		
-		ProxyUtil.configurarAutenticacaoProxy();
+//		ProxyUtil.configurarAutenticacaoProxy();
 		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
