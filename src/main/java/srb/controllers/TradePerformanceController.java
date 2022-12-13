@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import srb.model.TradePerformanceModel;
-import srb.repositories.TradePerformanceRepository;
-
 @RestController
 public class TradePerformanceController {
 	

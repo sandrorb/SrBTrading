@@ -1,38 +1,17 @@
 package srb.model;
 
-import java.io.Serializable;
+public class TradePerformanceModel {
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class TradePerformanceModel implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	//Este número de trades não é o que é usado para a simulação. Este é o número de trades que realmente
-	//foi executado pelo trade system, enquato que o número de trades da simulação é o número de trades
-	//arbitrário para serem simulados
-	@NotNull
 	int numOfTrade;
 	
-	@NotNull
 	double numOpPorMes;
 	
-	@NotNull
 	double probabilidadeAcertar;
 	
-	@NotNull
 	double payoff;
 	
-	@NotNull
 	double risco;
 
 	public Long getId() {
