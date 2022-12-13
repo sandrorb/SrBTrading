@@ -14,19 +14,19 @@ import srb.telegram.bot.SrBTelegramBot;
 public class TelegramBotController {
 
 
-	@RequestMapping(value = "/tlg", method = RequestMethod.GET)
-	@ResponseBody
-	public  String tlg() {
-		
-        TelegramBotsApi botsApi;
-		try {
-			botsApi = new TelegramBotsApi(DefaultBotSession.class);
-			botsApi.registerBot(new SrBTelegramBot());	
-		} catch (TelegramApiException e1) {
-			e1.printStackTrace();
-		}
-		
-		return "Ok";
-	}	
-	
+//	@RequestMapping(value = "/tlg", method = RequestMethod.GET)
+//	@ResponseBody
+//	public  String tlg() {
+//		
+//        TelegramBotsApi botsApi;
+//		try {
+//			botsApi = new TelegramBotsApi(DefaultBotSession.class);
+//			botsApi.registerBot(new SrBTelegramBot());	
+//		} catch (TelegramApiException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		return "Ok";
+//	}	
+//	
 }

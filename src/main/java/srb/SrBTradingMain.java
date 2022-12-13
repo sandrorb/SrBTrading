@@ -23,9 +23,8 @@ public class SrBTradingMain {
 		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
-		SrBTelegram.enviaMsg("Teste do enviaMsg()");
-		
-		SrBTelegram.start(1000*5);
+//		SrBTelegram.enviaMsg("Teste do enviaMsg()");
+//		SrBTelegram.start(1000*5);
 		
 	}
 
