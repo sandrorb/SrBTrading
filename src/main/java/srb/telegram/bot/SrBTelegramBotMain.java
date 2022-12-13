@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-public class Main {
+public class SrBTelegramBotMain {
 
 	public static void main(String[] args) throws TelegramApiException {
 		
@@ -20,12 +20,14 @@ public class Main {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         
         try {
-            botsApi.registerBot(new MyFirstBot());
+        	System.out.println("SrB: tentando registrar TelegramBot...");
+            botsApi.registerBot(new SrBTelegramBot());
+            System.out.println("SrB: TelegramBot registrado.");
         } catch (TelegramApiException e) {
+        	System.out.println("SrB: erro ao tentar fazer o registro do TelegramBot!");
             e.printStackTrace();
         }
 
-	}
-	
+	}	
 
 }

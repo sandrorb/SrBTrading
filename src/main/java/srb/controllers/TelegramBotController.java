@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import srb.telegram.bot.MyFirstBot;
+import srb.telegram.bot.SrBTelegramBot;
 
 @RestController
 public class TelegramBotController {
@@ -21,9 +21,8 @@ public class TelegramBotController {
         TelegramBotsApi botsApi;
 		try {
 			botsApi = new TelegramBotsApi(DefaultBotSession.class);
-			botsApi.registerBot(new MyFirstBot());
+			botsApi.registerBot(new SrBTelegramBot());	
 		} catch (TelegramApiException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

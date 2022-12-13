@@ -7,13 +7,8 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class MyFirstBot extends TelegramLongPollingBot{
+public class SrBTelegramBot extends TelegramLongPollingBot{
 	
-	public MyFirstBot () {
-		super();
-		ProxyUtilTelegram.configurarAutenticacaoProxy();
-	}
-
 	@Override
 	public void onUpdateReceived(Update update) {
 		
