@@ -12,7 +12,7 @@ public class SrBTradingMain {
 
 	public static void main(String[] args) {
 		
-//		ProxyUtil.configurarAutenticacaoProxy();
+		ProxyUtil.configurarAutenticacaoProxy();
 		
 		try {
 			SrBTelegramBotMain.main(null);
@@ -22,6 +22,8 @@ public class SrBTradingMain {
 		}
 		
 		SpringApplication.run(SrBTradingMain.class, args);
+		
+		SrBTelegram.enviaMsg("Teste do enviaMsg()");
 		
 		SrBTelegram.start(1000*5);
 		

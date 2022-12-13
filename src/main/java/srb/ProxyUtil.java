@@ -58,7 +58,8 @@ public class ProxyUtil {
 //		  System.out.println("SrB: diretório email: " + System.getProperty("user.email"));//acho que este não existe desta forma		
 //		  System.out.println("SrB: CREDENTIALS_FILE_PATH: " + CREDENTIALS_FILE_PATH);
 		  System.out.println("SrB: lembre-se sempre de configurar as variáveis de ambiente MY_PROXY_ADDRESS,");
-		  System.out.println("     MY_PROXY_PORT, COMPUTER_NAME, POSTGRES_PASSWORD, TELEGRAM_API_TOKEN, TELEGRAM_CHAT_ID e CREDENTIALS_FILE_PATH");
+		  System.out.println("     MY_PROXY_PORT, COMPUTER_NAME, CREDENTIALS_FILE_PATH");
+		  System.out.println("     TELEGRAM_API_TOKEN, TELEGRAM_CHAT_ID, e BOT_TOKEN");
 		  System.out.println("SrB: lembre-se que o arquivo de crendencial não possui caminho no site e ../ no laptop com");
 		  System.out.println("     o arquivo fora do diretório do app.");
     	
