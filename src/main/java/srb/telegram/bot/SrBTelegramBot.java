@@ -9,6 +9,13 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class SrBTelegramBot extends TelegramLongPollingBot{
 	
+//	public SrBTelegramBot() {
+//		super();
+//		System.setProperty("https.proxyHost", System.getenv("MY_PROXY_ADDRESS"));
+//		System.setProperty("https.proxyPort", System.getenv("MY_PROXY_PORT"));
+//    	System.setProperty("jdk.http.auth.tunneling.disabledSchemes", "");
+//	}
+	
 	@Override
 	public void onUpdateReceived(Update update) {
 		
