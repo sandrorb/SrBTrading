@@ -19,7 +19,7 @@
   
   
   	<properties>
-  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  		<!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
 		<!--Tive de tirar a versão para todar no Heroku. Dica que vi no google-->
 		<!--Aparentemente, ao retirar a versão, o maven escolhetu a versão JavaSE-1.8-->
 		<!--Mudei para 11 para ver se funciona, já que o projeto usa a palavra
@@ -94,8 +94,6 @@
 		    <artifactId>telegrambots</artifactId>
 		    <version>6.3.0</version>
 		</dependency>
-		
-		
 		
 	</dependencies>
 	
