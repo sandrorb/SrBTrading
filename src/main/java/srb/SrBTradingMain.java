@@ -17,19 +17,12 @@ public class SrBTradingMain {
 
 	public static void main(String[] args) {
 		
-		ProxyUtil.configurarAutenticacaoProxy();
-		
-		try {
-			SrBTelegramBotMain.main(null);
-		} catch (TelegramApiException e) {
-			System.out.println("SrB: a tentativa de inicar o TelegramBot falhou!");
-			e.printStackTrace(); 
-		}
-		
 		SpringApplication.run(SrBTradingMain.class, args);
 		
-//		SrBTelegram.enviaMsg("Teste do enviaMsg()");
+		ProxyUtil.configurarAutenticacaoProxy();
 		
+		SrBTelegramBotMain.main(null);
+//		SrBTelegram.enviaMsg("Usando a classe SrBTelegram de envio por url");
 //		SrBTelegram.start(1000*5);
 		
 	}

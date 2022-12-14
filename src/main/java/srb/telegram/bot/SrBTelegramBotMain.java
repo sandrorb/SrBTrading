@@ -10,16 +10,12 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class SrBTelegramBotMain {
 
-	public static void main(String[] args) throws TelegramApiException {
+	public static void main(String[] args) {
 		
-//		ProxyUtilTelegram.configurarAutenticacaoProxy();
-		
-//        ApiContextInitializer.init();        
-//        TelegramBotsApi botsApi = new TelegramBotsApi();//versão 4.9
-		
-        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        TelegramBotsApi botsApi;
         
         try {
+        	botsApi = new TelegramBotsApi(DefaultBotSession.class);
         	System.out.println("SrB: tentando registrar TelegramBot...");
             botsApi.registerBot(new SrBTelegramBot());
             System.out.println("SrB: TelegramBot registrado.");

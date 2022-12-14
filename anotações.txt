@@ -6,6 +6,8 @@ Neste link parece que o exemplo está mais simples e talvez não falte
 código como no outro:
 https://medium.com/geekculture/how-to-read-data-from-google-sheets-ee335f787de6
 
+Para que a acentuação saia corretamente no console do Eclipse:
+Run Configurations -> Arguments -> VM arguments-> -Dsun.stdout.encoding=UTF-8
 
 
 https://stackoverflow.com/questions/53901194/use-google-sheets-java-api-with-api-key-not-oauth

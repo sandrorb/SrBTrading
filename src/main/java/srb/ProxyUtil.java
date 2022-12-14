@@ -8,7 +8,6 @@ import java.net.UnknownHostException;
 
 public class ProxyUtil {
 
-	
 	/********************************************************************/
 	/* Esta parte é somente para o computador do trabalho que tem proxy */
 	/* e é uma configuração um pouco diferente daquela que há para      */

@@ -18,6 +18,7 @@ public class SrBTelegram extends TimerTask {
 		
 	public static void main(String[] args) {
 		ProxyUtil.configurarAutenticacaoProxy();
+		System.out.println("ProxyUtil.configurarAutenticacaoProxy() executado dentro da classe SrBTelegram");
 //		start(1000*5);
 		enviaMsg("Teste!");
 	}
@@ -46,7 +47,8 @@ public class SrBTelegram extends TimerTask {
 	}
 	
 	
-	//O problema aqui é que após verificar que a venda ocorreu, o sistema fica enviando a mesma mensagem de aviso.
+	//O problema aqui é que após verificar que a venda ocorreu,
+	//o sistema fica enviando a mesma mensagem de aviso.
 	public void run() {
         String msg = getMsg();
         if (msg.equals("Venda Ocorreu")) {
