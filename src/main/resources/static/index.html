@@ -33,18 +33,22 @@
 	    acertividade, payoff (RR) e risco médio conforme os dados de entrada padrão do formulário. 
 	    Mais detalhes em <a href="http://bit.ly/srbfxlivre" target="_blank">http://bit.ly/srbfxlivre</a>.<p>
 	     -->
-	    
+	    <!--
 	    Foi testado um sistema de swing trade em Forex cujas estatísticas para a acertividade, payoff (RR) e
 	    risco médio foram respecitivamente 50.45%, 1.39, 1.34% com uma média de 7.63 trades por mês e um total de 443. <p>
+	     -->
+	    Um possível e realistico sistema de swing trade seguidor de tendência poderia ter acertividade,
+	    payoff (RR) e risco médio foram respectivamente de 50%, 1.6, e 1% com uma média de 10 trades por mês
+	    e um total de 500. <p>
 	    
-	    Por meio dos parâmetros do sistema de trading obtidos por backtesting ou forwarding testing,
-	    como os descritos acima, pode-se fazer várias simulações de possíveis históricos (curvas de capital)
+	    Por meio dos parâmetros do sistema de trading como os acima que pode ser obtidos por backtesting ou
+	    forwarding testing, pode-se fazer várias simulações de possíveis históricos (curvas de capital)
 	    a fim de se obter características adicionais do sistema, como por exemplo, o drawdown máximo. <p>
 	    
 	    A probabilidade de acertar a operação ou a acertividade é o percentual de operações que terminam no lucro.
 		O payoff, no jargão do Van Tharp, o RR (razão ganho:perda ou Reward:Risk), é a média de ganho das operações
-		vencedoras dividido pela média de perda das operações perdedoras. O risco percentual por operação refere-se a quantidade
-		de capital que é posta em risco por cada operação. O breakeven é a acertividade mínima que
+		vencedoras dividido pela média de perda das operações perdedoras. O risco percentual por operação refere-se
+		a quantidade de capital que é posta em risco por cada operação. O breakeven é a acertividade mínima que
 		o sistema deve possuir para no mínimo "empatar" (não ter prejuízo). O edge é, em um sistema vencedor,
 		a diferença entre o percetual de acerto e o breakeven.<p>
 		
@@ -66,19 +70,19 @@
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Média de Operações por Mês:</label></td>
-		  		<td><input type="text" id="nOpPorMes" name="nOpPorMes" value="9.86"></td> 
+		  		<td><input type="text" id="nOpPorMes" name="nOpPorMes" value="10"></td> 
 		  	</tr>		  	
 		  	<tr>
 		  		<td class="tdlabel"><label>Probabilidade de Acertar a Operação:</label></td>
-		  		<td><input type="text" id="p" name="p" value="49.45"></td> 
+		  		<td><input type="text" id="p" name="p" value="50.00"></td> 
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Razão RR (payoff):</label></td>
-		  		<td><input type="text" id="rr" name="rr" value="1.45"></td> 
+		  		<td><input type="text" id="rr" name="rr" value="1.60"></td> 
 		  	</tr>
 		  	<tr>
 		  		<td class="tdlabel"><label>Risco Percentual por Operação:</label></td>
-		  		<td><input type="text" id="risco" name="risco" value="1.38"></td> 
+		  		<td><input type="text" id="risco" name="risco" value="1.00"></td> 
 		  	</tr>
 		</table>
 		<div id="dadosCalculados"></div>
