@@ -24,7 +24,7 @@ public class SrBTradingMain {
 		
 		ProxyUtil.configurarAutenticacaoProxy();
 		
-		SrBTelegramBotMain.main(null);
+//		SrBTelegramBotMain.main(null);
 //		SrBTelegram.enviaMsg("Usando a classe SrBTelegram de envio por url");
 //		SrBTelegram.start(1000*5);
 		
