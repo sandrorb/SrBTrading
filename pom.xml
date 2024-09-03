@@ -26,7 +26,9 @@
 		    reservada var só suportada a partir da versão 10. Não adiantou. Mudei na
 		    configuração da JRE do projeto para JavaSE-11. Java 10 e depois 9 e de volta ao 1.8 -->
 		<!-- funcionou com a configuração em 1.8 e sem o var. Talvez sem o var funcione com uma versão maior -->
-		<!--java.version>14</java.version>-->    		
+		<!--java.version>14</java.version>-->  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  		
 	</properties> 
   
 	<dependencies>
